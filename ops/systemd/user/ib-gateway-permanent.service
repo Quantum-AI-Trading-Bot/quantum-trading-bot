@@ -1,0 +1,51 @@
+[Unit]
+Description=Enhanced IB Gateway for 24/7 Trading Operations
+Documentation=https://github.com/ibc/IBC
+After=network.target graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=forking
+User=davidsanker
+Group=davidsanker
+Environment="DISPLAY=:1"
+Environment="XAUTHORITY=%h/.Xauthority"
+Environment="HOME=/home/davidsanker"
+
+# Pre-start: Ensure VNC and X11 are ready
+ExecStartPre=/bin/bash -c 'if ! pgrep -f "Xvnc :1"; then vncserver :1 -geometry 1920x1080 -depth 24; fi'
+ExecStartPre=/bin/sleep 5
+ExecStartPre=/bin/bash -c 'export DISPLAY=:1 && xdpyinfo > /dev/null || exit 1'
+
+# Main service: Start enhanced IB Gateway
+ExecStart=/home/davidsanker/platform/bin/permanent_ib_gateway.sh start
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/home/davidsanker/platform/bin/permanent_ib_gateway.sh stop
+
+# Advanced reliability settings
+Restart=always
+RestartSec=30
+StartLimitBurst=5
+StartLimitInterval=300
+TimeoutStartSec=600
+TimeoutStopSec=120
+
+# Resource limits
+MemoryMax=4G
+CPUQuota=200%
+TasksMax=1024
+
+# Security settings
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/home/davidsanker/platform/logs /tmp /home/davidsanker/IBC /home/davidsanker/IBGateway
+
+# Working directory
+WorkingDirectory=/home/davidsanker
+
+# PID file management
+PIDFile=/tmp/ib_gateway_enhanced.pid
+
+[Install]
+WantedBy=default.target
