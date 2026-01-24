@@ -1,0 +1,79 @@
+# Instruments Configuration
+#
+# Purpose: Map friendly instrument names to IBKR contract specifications
+# Maintenance: Update futures expiry monthly (see comments below)
+#
+# IMPORTANT: For futures (MES, MNQ), update 'expiry' field monthly to current front-month
+# Format: YYYYMM (e.g., 202603 for March 2026)
+#
+# To update: Change expiry to next quarterly contract (H, M, U, Z months)
+# - March contracts (H): Update by end of February
+# - June contracts (M): Update by end of May
+# - September contracts (U): Update by end of August
+# - December contracts (Z): Update by end of November
+
+# =============================================================================
+# FUTURES
+# =============================================================================
+
+MES:
+  symbol: MES
+  friendly_name: Micro E-mini S&P 500
+  instrument_type: FUT
+  exchange: CME
+  currency: USD
+  multiplier: 5
+  expiry: 202603  # ⚠️ UPDATE MONTHLY: Current front-month (March 2026)
+  description: "Micro E-mini S&P 500 futures - UPDATE EXPIRY MONTHLY to front-month"
+  tick_size: 0.25
+  tick_value: 1.25  # 0.25 * $5 multiplier
+  intraday_margin: 630  # Approximate, subject to change
+  max_contracts_per_order: 10
+  max_total_contracts: 20
+  min_account_equity: 25000
+  trading_hours: "Sunday 6:00pm ET - Friday 5:00pm ET"
+
+MNQ:
+  symbol: MNQ
+  friendly_name: Micro E-mini Nasdaq-100
+  instrument_type: FUT
+  exchange: CME
+  currency: USD
+  multiplier: 2
+  expiry: 202603  # ⚠️ UPDATE MONTHLY: Current front-month (March 2026)
+  description: "Micro E-mini Nasdaq-100 futures - UPDATE EXPIRY MONTHLY to front-month"
+  tick_size: 0.25
+  tick_value: 0.50  # 0.25 * $2 multiplier
+  intraday_margin: 500  # Approximate, subject to change
+  max_contracts_per_order: 15
+  max_total_contracts: 30
+  min_account_equity: 20000
+  trading_hours: "Sunday 6:00pm ET - Friday 5:00pm ET"
+
+# Future: Add more micro contracts
+# M2K: Micro Russell 2000
+# MYM: Micro Dow Jones
+
+# =============================================================================
+# STOCKS (for reference, typically not needed as stocks are simple)
+# =============================================================================
+# SPY:
+#   symbol: SPY
+#   friendly_name: SPDR S&P 500 ETF
+#   instrument_type: STOCK
+#   exchange: SMART
+#   currency: USD
+
+# =============================================================================
+# Future: OPTIONS (not implemented in Phase FUT-1.0)
+# =============================================================================
+# Options will be added in Phase OPT-1.0 with additional fields:
+# - expiry: YYYYMMDD
+# - strike: float
+# - right: CALL/PUT
+
+# =============================================================================
+# Future: CRYPTO (not implemented in Phase FUT-1.0)
+# =============================================================================
+# Crypto will be added in Phase CRYPTO-1.0 with:
+# - exchange: PAXOS (IBKR's crypto exchange)

@@ -1,0 +1,236 @@
+# Model Zoo Configuration
+#
+# This configuration controls which models are used in the Model Zoo.
+# All models default to OFF for safety. Enable explicitly.
+#
+# IMPORTANT: This file is read by model_orchestrator.py
+# Changes require restarting the quantum engine service.
+
+# ============================================================================
+# GLOBAL SETTINGS
+# ============================================================================
+
+# Enable/disable Model Zoo (default: false for backward compatibility)
+# When false, system uses legacy signal_generator path
+MODEL_ZOO_ENABLED: false
+
+# Learning settings
+LEARNING_ENABLED: true  # Enable learning loop (safe, updates weights only)
+LEARNING_UPDATE_INTERVAL: 10  # Update learner every N trades
+
+# Safety constraints (enforced by orchestrator)
+MAX_POSITION_SIZE_PCT: 0.15  # Max 15% of portfolio per position
+MIN_CONFIDENCE_THRESHOLD: 0.75  # Minimum confidence for actions
+MAX_DAILY_TRADES: 50  # Maximum trades per day
+
+# ============================================================================
+# MODEL SELECTION
+# ============================================================================
+
+# Forecast model (predicts future returns)
+# Options: ewma, ar1, lstm, tcn
+# Default: ewma (simple, reliable)
+FORECAST_MODEL: ewma
+
+# Signal model (generates BUY/SELL/HOLD signals)
+# Options: signal_generator, gradient_boosting, neural_signal
+# Default: signal_generator (existing system, backward compatible)
+SIGNAL_MODEL: signal_generator
+
+# Allocation model (computes position sizes)
+# Options: fixed, risk_parity, mean_variance, quantum_annealing
+# Default: fixed (safe, deterministic)
+ALLOCATION_MODEL: fixed
+
+# Execution policy (order type and timing)
+# Options: default, rl_ppo
+# Default: default (market orders)
+EXECUTION_POLICY: default
+
+# ============================================================================
+# MODEL-SPECIFIC CONFIGURATIONS
+# ============================================================================
+
+# EWMA Forecast Model
+ewma:
+  alpha: 0.5  # Smoothing factor [0.0, 1.0]
+  prediction_horizon: "1d"  # 1 day ahead
+
+# AR(1) Forecast Model
+ar1:
+  lag: 1  # AR lag
+  prediction_horizon: "1d"
+
+# LSTM Forecast Model (optional, PyTorch required)
+lstm:
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.1
+  prediction_horizon: "1d"
+  pretrained_model: null  # Path to pretrained model file
+
+# TCN Forecast Model (optional, PyTorch required)
+tcn:
+  num_channels: [64, 64, 64]
+  kernel_size: 3
+  dropout: 0.1
+  prediction_horizon: "1d"
+  pretrained_model: null
+
+# Signal Generator (existing system)
+signal_generator:
+  enable_multi_signal: true  # Use multiple signal components
+  confidence_threshold: 0.75
+  lookback_period: 20  # days
+
+# Gradient Boosting Signal Model (sklearn)
+gradient_boosting:
+  n_estimators: 100
+  max_depth: 3
+  learning_rate: 0.1
+  pretrained_model: null  # Path to trained model
+
+# Neural Signal Model (optional, PyTorch required)
+neural_signal:
+  hidden_sizes: [128, 64]
+  dropout: 0.1
+  pretrained_model: null
+
+# Fixed Allocation (safe default)
+fixed:
+  target_value_pct: 0.01  # 1% of portfolio per trade
+  max_position_pct: 0.15  # Max 15% per position
+
+# Risk Parity Allocation (PyPortfolioOpt required)
+risk_parity:
+  target_value_pct: 0.01
+  max_position_pct: 0.15
+  risk_free_rate: 0.02
+
+# Mean-Variance Allocation (PyPortfolioOpt required)
+mean_variance:
+  target_value_pct: 0.01
+  max_position_pct: 0.15
+  risk_free_rate: 0.02
+  max_portfolio_variance: 0.15
+
+# Quantum Annealing Allocation (optional, DRY_RUN only)
+quantum_annealing:
+  target_value_pct: 0.01
+  max_position_pct: 0.15
+  temperature: 1000  # Initial temperature
+  cooling_rate: 0.95  # Annealing rate
+  iterations: 100
+
+# Default Execution Policy
+default:
+  order_type: "MKT"  # Market orders
+  time_in_force: "DAY"
+  timing: "immediate"
+
+# RL Execution Policy (offline only, requires Stable-Baselines3)
+rl_ppo:
+  order_type: "MKT"
+  time_in_force: "DAY"
+  timing: "immediate"
+  pretrained_model: null
+  training_mode: "offline"  # "offline" or "online" (online NOT recommended)
+
+# ============================================================================
+# LEARNING CONFIGURATION
+# ============================================================================
+
+# Signal Weight Learner
+signal_weight_learner:
+  learning_rate: 0.1
+  min_weight: 0.1
+  max_weight: 5.0
+  update_frequency: 10  # Update every N trades
+
+# Confidence Calibrator
+confidence_calibrator:
+  method: "platt_scaling"  # "platt_scaling" or "isotonic"
+  calibration_bins: 5
+  min_predictions_per_bin: 10
+
+# ============================================================================
+# OPTIONAL MODELS (Feature Flags)
+# ============================================================================
+
+# Enable RL models (default: false, offline only)
+RL_ENABLED: false
+RL_TRAINING_MODE: "offline"  # "offline" or "online"
+
+# Enable quantum optimizer (default: false, DRY_RUN only)
+QUANTUM_OPT_ENABLED: false
+QUANTUM_OPT_DRY_RUN_ONLY: true  # Force DRY_RUN for quantum optimizer
+
+# ============================================================================
+# LOGGING AND ARTIFACTS
+# ============================================================================
+
+# VPA artifact settings
+vpa_storage_path: "/home/davidsanker/platform/vpa_storage"
+vpa_include_metadata: true  # Include model metadata in VPA
+vpa_include_feature_hashes: false  # Compute feature hashes (slower)
+
+# Execution receipt settings
+execution_receipts_path: "/home/davidsanker/platform/execution_receipts"
+save_all_decisions: true  # Save HOLD decisions too
+
+# Learning state persistence
+learner_state_path: "/home/davidsanker/platform/state/learner_state.json"
+backup_learner_state: true
+max_backups: 10
+
+# ============================================================================
+# FEATURE ENGINEERING
+# ============================================================================
+
+# Price features
+price_features:
+  lookback_period: 20
+  include_returns: true
+  include_log_returns: true
+  include_volatility: true
+
+# Technical indicators
+technical_indicators:
+  rsi_period: 14
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  bollinger_period: 20
+  bollinger_std: 2
+
+# Macro features (optional, if data available)
+macro_features:
+  enable: false
+  include_vix: true
+  include_interest_rates: true
+  include_market_breadth: true
+
+# ============================================================================
+# FALLBACK SETTINGS
+# ============================================================================
+
+# What to do if model fails to load
+MODEL_LOAD_FAILURE_ACTION: "fallback"  # "fallback" or "halt"
+
+# What to do if model produces invalid output
+MODEL_INVALID_OUTPUT_ACTION: "hold"  # "hold" or "fallback" or "halt"
+
+# What to do if all models fail
+ALL_MODELS_FAIL_ACTION: "halt"  # "hold" or "halt"
+
+# ============================================================================
+# NOTES
+# ============================================================================
+
+# 1. MODEL_ZOO_ENABLED=false means use legacy path (no Model Zoo)
+# 2. Set MODEL_ZOO_ENABLED=true to use Model Zoo (still DRY_RUN by default)
+# 3. Set QUANTUM_EXECUTION_ENABLED=true AND QUANTUM_EXECUTION_DRY_RUN=false for live trading
+# 4. RL_ENABLED=true only enables RL models; they still run in offline mode
+# 5. QUANTUM_OPT_ENABLED=true only enables quantum optimizer; it runs in DRY_RUN only
+# 6. All optional dependencies (PyTorch, PyPortfolioOpt, etc.) are truly optional
+# 7. System will fall back to classical models if optional dependencies missing

@@ -1,0 +1,99 @@
+{
+  "asset_classes": {
+    "forex": {
+      "pairs": [
+        "EURUSD",
+        "USDJPY",
+        "GBPJPY",
+        "AUDUSD"
+      ],
+      "allocation": 0.2,
+      "strategy": "carry_trade + momentum",
+      "timeframe": "24/5",
+      "entry_signals": [
+        "interest_rate_differential",
+        "momentum_breakout"
+      ],
+      "exit_signals": [
+        "interest_rate_reversal",
+        "support_resistance"
+      ]
+    },
+    "crypto": {
+      "assets": [
+        "BTC",
+        "ETH"
+      ],
+      "allocation": 0.1,
+      "strategy": "trend_following + volatility_breakout",
+      "timeframe": "24/7",
+      "entry_signals": [
+        "breakout",
+        "volume_spike"
+      ],
+      "exit_signals": [
+        "rsi_overbought",
+        "support_break"
+      ]
+    },
+    "commodities": {
+      "assets": [
+        "XAUUSD",
+        "XAGUSD"
+      ],
+      "allocation": 0.1,
+      "strategy": "inflation_hedge + safe_haven",
+      "timeframe": "24/5",
+      "entry_signals": [
+        "inflation_data",
+        "geopolitical_risk"
+      ],
+      "exit_signals": [
+        "risk_appetite_return",
+        "technical_levels"
+      ]
+    },
+    "etfs": {
+      "assets": [
+        "QQQ",
+        "IWM",
+        "GLD",
+        "TLT",
+        "HYG"
+      ],
+      "allocation": 0.15,
+      "strategy": "sector_rotation + risk_parity",
+      "timeframe": "market_hours",
+      "entry_signals": [
+        "sector_strength",
+        "valuation"
+      ],
+      "exit_signals": [
+        "sector_weakness",
+        "rebalancing"
+      ]
+    },
+    "stocks": {
+      "allocation": 0.35,
+      "strategy": "momentum + fundamentals",
+      "current_positions": 7
+    },
+    "cash": {
+      "allocation": 0.1,
+      "purpose": "dry_powder + emergency_fund"
+    }
+  },
+  "risk_management": {
+    "max_position_size": 0.05,
+    "stop_loss": 0.02,
+    "take_profit": 0.04,
+    "correlation_limit": 0.7,
+    "rebalancing": "weekly"
+  },
+  "execution": {
+    "order_type": "MKT",
+    "slippage_tolerance": 0.001,
+    "execution_algorithm": "TWAP",
+    "monitoring": "real_time"
+  }
+}
