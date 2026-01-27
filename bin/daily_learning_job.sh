@@ -49,7 +49,7 @@ main() {
 
     # Ingest executions
     log "Step 1: Ingesting execution receipts..."
-    if "$PLATFORM/venv/bin/python" "$PLATFORM/bin/ingest_executions.py" >> "$LOG_FILE" 2>&1; then
+    if "/home/davidsanker/venv/bin/python" "$PLATFORM/bin/ingest_executions.py" >> "$LOG_FILE" 2>&1; then
         log "✓ Ingest completed"
     else
         error "Ingest failed - check logs"
@@ -58,7 +58,7 @@ main() {
 
     # Update learner
     log "Step 2: Updating learner..."
-    if "$PLATFORM/venv/bin/python" "$PLATFORM/bin/run_learning_update.py" >> "$LOG_FILE" 2>&1; then
+    if "/home/davidsanker/venv/bin/python" "$PLATFORM/bin/run_learning_update.py" >> "$LOG_FILE" 2>&1; then
         log "✓ Learner updated"
     else
         error "Learner update failed - check logs"
