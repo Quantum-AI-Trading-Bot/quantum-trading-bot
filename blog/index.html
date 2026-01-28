@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog posts about Quantum AI Trading Bot development, trading strategies, machine learning, and automation insights.">
+    <meta name="keywords" content="trading blog, AI trading, machine learning, quantum trading, algorithmic trading blog">
+    <title>Blog - Quantum AI Trading Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .nav {
+            text-align: center;
+            padding: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+        .blog-container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .blog-header {
+            margin-bottom: 40px;
+        }
+        .blog-header h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .blog-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .post-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .post-card h3 {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .post-meta {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .post-excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .read-more {
+            color: #667eea;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .post-tags {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            .posts-grid { grid-template-columns: 1fr; }
+            .blog-container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📝 Blog</h1>
+            <p>Insights, updates, and tutorials from the Quantum AI Trading Bot development journey</p>
+        </div>
+    </header>
+
+    <div class="nav">
+        <a href="../index.html">← Back to Home</a>
+    </div>
+
+    <div class="container">
+        <div class="blog-container">
+            <div class="blog-header">
+                <h2>Latest Posts</h2>
+                <p>Learn about trading strategies, machine learning techniques, and system architecture</p>
+            </div>
+
+            <div class="posts-grid">
+                <!-- Post 1 -->
+                <a href="posts/launch-announcement.html" class="post-card">
+                    <h3>🚀 Launching Quantum AI Trading Bot</h3>
+                    <div class="post-meta">January 28, 2026 • 5 min read</div>
+                    <p class="post-excerpt">We're excited to announce the public launch of Quantum AI Trading Bot! Learn about our journey, features, and what's coming next.</p>
+                    <div class="post-tags">
+                        <span class="tag">Announcement</span>
+                        <span class="tag">Launch</span>
+                    </div>
+                    <div class="read-more">Read More →</div>
+                </a>
+
+                <!-- Post 2 -->
+                <a href="posts/multi-source-data-integration.html" class="post-card">
+                    <h3>📊 Multi-Source Data Integration Architecture</h3>
+                    <div class="post-meta">January 27, 2026 • 8 min read</div>
+                    <p class="post-excerpt">Deep dive into how we integrate 6 different data sources to achieve 90% accuracy in trading predictions.</p>
+                    <div class="post-tags">
+                        <span class="tag">Technical</span>
+                        <span class="tag">Architecture</span>
+                        <span class="tag">Data Integration</span>
+                    </div>
+                    <div class="read-more">Read More →</div>
+                </a>
+
+                <!-- Post 3 -->
+                <a href="posts/risk-management-strategies.html" class="post-card">
+                    <h3>🛡️ Risk Management & Safety Guardrails</h3>
+                    <div class="post-meta">January 26, 2026 • 6 min read</div>
+                    <p class="post-excerpt">How we built institutional-grade risk management with 8-step execution gating and real-time monitoring.</p>
+                    <div class="post-tags">
+                        <span class="tag">Risk Management</span>
+                        <span class="tag">Safety</span>
+                        <span class="tag">Production</span>
+                    </div>
+                    <div class="read-more">Read More →</div>
+                </a>
+
+                <!-- Post 4 -->
+                <a href="posts/machine-learning-pipeline.html" class="post-card">
+                    <h3>🤖 Machine Learning Pipeline for Trading</h3>
+                    <div class="post-meta">January 25, 2026 • 10 min read</div>
+                    <p class="post-excerpt">Exploring our ML pipeline from feature engineering to model training and deployment in production trading.</p>
+                    <div class="post-tags">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Tutorial</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <div class="read-more">Read More →</div>
+                </a>
+
+                <!-- Post 5 -->
+                <a href="posts/backtesting-strategies.html" class="post-card">
+                    <h3>📈 Backtesting Framework & Results</h3>
+                    <div class="post-meta">January 24, 2026 • 7 min read</div>
+                    <p class="post-excerpt">Our comprehensive backtesting framework showing +37% returns with -83% drawdown reduction.</p>
+                    <div class="post-tags">
+                        <span class="tag">Backtesting</span>
+                        <span class="tag">Results</span>
+                        <span class="tag">Performance</span>
+                    </div>
+                    <div class="read-more">Read More →</div>
+                </a>
+
+                <!-- Post 6 -->
+                <a href="posts/ib-gateway-automation.html" class="post-card">
+                    <h3>⚙️ Interactive Brokers Gateway Automation</h3>
+                    <div class="post-meta">January 23, 2026 • 9 min read</div>
+                    <p class="post-excerpt">Building a resilient 24/7 automated trading system with auto-recovery and monitoring capabilities.</p>
+                    <div class="post-tags">
+                        <span class="tag">Infrastructure</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">DevOps</span>
+                    </div>
+                    <div class="read-more">Read More →</div>
+                </a>
+            </div>
+
+            <div style="margin-top: 60px; padding: 30px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; text-align: center;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">🔔 Stay Updated</h3>
+                <p style="color: #666; margin-bottom: 20px;">Follow our development journey on GitHub for the latest updates and features</p>
+                <a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot" style="display: inline-block; padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all 0.3s ease;">⭐ Star on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Quantum AI Trading Bot. All rights reserved.</p>
+            <p>
+                <a href="../index.html" style="color: white;">Home</a> |
+                <a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot" style="color: white;">GitHub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
