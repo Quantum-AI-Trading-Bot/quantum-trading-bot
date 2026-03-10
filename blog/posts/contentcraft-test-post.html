@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ContentCraft integration test verifying the publishing pipeline for Quantum AI Trading Bot blog.">
+    <meta name="keywords" content="contentcraft, integration test, quantum trading, AI trading">
+    <title>ContentCraft Integration Test — Quantum AI Trading Bot Blog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            padding: 40px 20px;
+            color: white;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .nav a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        .article {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .article-title {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .article-meta {
+            color: #888;
+            font-size: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .article-content {
+            font-size: 1.15em;
+            color: #444;
+        }
+        .article-content h2 {
+            color: #667eea;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .article-content h3 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        .article-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        .article-content li {
+            margin-bottom: 12px;
+        }
+        .article-content strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        .highlight-box strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .author-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 60px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+        .author-info h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        .author-info p {
+            color: #666;
+            margin: 0;
+        }
+        .related-posts {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #f0f0f0;
+        }
+        .related-posts h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        .related-posts ul {
+            list-style: none;
+            padding: 0;
+        }
+        .related-posts li {
+            margin-bottom: 15px;
+        }
+        .related-posts a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .related-posts a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .article { padding: 30px; }
+            .article-title { font-size: 2em; }
+            .article-content { font-size: 1em; }
+            .author-box { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <a href="../index.html">&larr; Back to Blog</a>
+            </div>
+            <h1 style="font-size: 2em; margin-bottom: 10px;">Quantum AI Trading Bot Blog</h1>
+            <p style="opacity: 0.9;">Insights from the development journey</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <article class="article">
+            <div class="article-header">
+                <h1 class="article-title">ContentCraft Integration Test &mdash; Quantum AI Trading Bot</h1>
+
+                <div class="article-meta">
+                    <span>March 10, 2026</span>
+                    <span>3 min read</span>
+                    <span>David Sanker</span>
+                </div>
+
+                <div class="article-tags">
+                    <span class="tag">ContentCraft</span>
+                    <span class="tag">Integration Test</span>
+                    <span class="tag">Automation</span>
+                </div>
+            </div>
+
+            <div class="article-content">
+                <p>This post verifies that the <strong>ContentCraft publishing pipeline</strong> can successfully deploy content to the Quantum AI Trading Bot blog. ContentCraft is our multi-channel content engine that automates publishing across all brands in the ecosystem.</p>
+
+                <div class="highlight-box">
+                    <strong>What Is This Post?</strong>
+                    <p>This is an automated integration test confirming that ContentCraft can publish to this blog. It validates the full pipeline: content generation, formatting, GitHub Pages deployment, and cross-site verification.</p>
+                </div>
+
+                <h2>The ONE SYSTEM Vision</h2>
+
+                <p>Quantum AI Trading Bot is part of a larger ecosystem of interconnected projects. The ML techniques powering our trading predictions &mdash; from feature engineering to ensemble methods &mdash; transfer directly to other products in the system.</p>
+
+                <p>Currently operating in <strong>paper trading mode</strong> for responsible AI research, the long-term vision is a downloadable, open-source system for 100% AI-autonomous trading powered by quantum mechanics and machine learning. Eventually, Quantum AI Trading Bot will be deployed as a <strong>UAPK</strong> &mdash; a compiled autonomous business entity.</p>
+
+                <h2>Content Pipeline Architecture</h2>
+
+                <p>ContentCraft manages content across 7 blogs spanning 3 different publishing infrastructures:</p>
+
+                <ul>
+                    <li><strong>Blog API</strong> (Projects VM) &mdash; Morpheus Mark, Lawkraft, Hucke &amp; Sanker, The Road Not Taken</li>
+                    <li><strong>GitHub Pages</strong> &mdash; Mother AI OS, Quantum AI Trading Bot</li>
+                    <li><strong>SSH Docusaurus</strong> (UAPK VM) &mdash; UAPK</li>
+                </ul>
+
+                <p>Each blog receives content tailored to its brand voice, audience, and strategic positioning within the ONE SYSTEM. Every post includes natural cross-references that reveal the interconnected nature of the ecosystem.</p>
+
+                <h2>What's Next</h2>
+
+                <p>With all 7 blogs verified and operational, ContentCraft can begin its core mission: automated multi-channel content generation with intelligent scheduling, persona-based voice profiles, and LinkedIn distribution. The system produces blog posts, LinkedIn abstracts, and personal teasers &mdash; all routed to the right channels automatically.</p>
+
+                <div class="highlight-box">
+                    <strong>Pipeline Status: Verified</strong>
+                    <p>This test post confirms the Quantum AI Trading Bot blog is fully integrated into the ContentCraft publishing system.</p>
+                </div>
+            </div>
+
+            <div class="author-box">
+                <div class="author-avatar">&#x1f468;&#x200d;&#x1f4bb;</div>
+                <div class="author-info">
+                    <h4>About the Author</h4>
+                    <p><strong>David Sanker</strong> is the lead developer of Quantum AI Trading Bot. A German lawyer, AI engineer, and consultant, he builds AI-powered systems across legal tech, trading, and content automation through <a href="https://lawkraft.com" style="color: #667eea;">Lawkraft</a>.</p>
+                </div>
+            </div>
+
+            <div class="related-posts">
+                <h3>Related Posts</h3>
+                <ul>
+                    <li><a href="launch-announcement.html">Launching Quantum AI Trading Bot</a></li>
+                    <li><a href="machine-learning-pipeline.html">Machine Learning Pipeline for Trading</a></li>
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Quantum AI Trading Bot. All rights reserved.</p>
+            <p>
+                <a href="../../index.html" style="color: white;">Home</a> |
+                <a href="../index.html" style="color: white;">Blog</a> |
+                <a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot" style="color: white;">GitHub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
