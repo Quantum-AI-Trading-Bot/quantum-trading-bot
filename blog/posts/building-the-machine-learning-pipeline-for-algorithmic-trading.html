@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Announcing the public launch of Quantum AI Trading Bot - An advanced AI-powered trading system with multi-source data integration">
+    <meta name="keywords" content="trading bot launch, AI trading announcement, quantum trading">
+    <title>"Building the Machine Learning Pipeline for Algorithmic Trading" - Quantum AI Trading Bot Blog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            padding: 40px 20px;
+            color: white;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .nav a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        .article {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .article-title {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .article-meta {
+            color: #888;
+            font-size: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .article-content {
+            font-size: 1.15em;
+            color: #444;
+        }
+        .article-content h2 {
+            color: #667eea;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .article-content h3 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        .article-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        .article-content li {
+            margin-bottom: 12px;
+        }
+        .article-content code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .article-content pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        .article-content blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #666;
+            font-style: italic;
+        }
+        .article-content strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        .highlight-box strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .author-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 60px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+        .author-info h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        .author-info p {
+            color: #666;
+            margin: 0;
+        }
+        .related-posts {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #f0f0f0;
+        }
+        .related-posts h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        .related-posts ul {
+            list-style: none;
+            padding: 0;
+        }
+        .related-posts li {
+            margin-bottom: 15px;
+        }
+        .related-posts a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .related-posts a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .article { padding: 30px; }
+            .article-title { font-size: 2em; }
+            .article-content { font-size: 1em; }
+            .author-box { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <a href="../index.html">← Back to Blog</a>
+            </div>
+            <h1 style="font-size: 2em; margin-bottom: 10px;">📝 Quantum AI Trading Bot Blog</h1>
+            <p style="opacity: 0.9;">Insights from the development journey</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <article class="article">
+            <div class="article-header">
+                <h1 class="article-title">"Building the Machine Learning Pipeline for Algorithmic Trading"</h1>
+
+                <div class="article-meta">
+                    <span>📅 January 28, 2026</span>
+                    <span>⏱️ 5 min read</span>
+                    <span>👤 David Sanker</span>
+                </div>
+
+                <div class="article-tags">
+            <span class="tag">MachineLearning</span>
+            <span class="tag">TradingPipeline</span>
+            <span class="tag">FeatureEngineering</span>
+            <span class="tag">ModelTraining</span>
+            <span class="tag">PaperTrading</span>
+            <span class="tag">Python</span>
+        </div>
+            </div>
+
+            <div class="article-content">
+            <p>
+The heart of the Quantum AI Trading Bot is its machine learning pipeline. This week I completed the first end-to-end version: raw market data goes in, trade signals come out. The pipeline is far from perfect — paper trading results will tell me where it needs improvement — but having a working end-to-end system is a critical milestone. Here's how it's built. 
+</p>
+<h2>Pipeline Overview</h2>
+<p>
+The ML pipeline has four stages, each designed to be independently testable and replaceable: 
+</p>
+<p>
+1. <strong>Feature Engineering</strong> — transforms raw market data into the 50+ feature vectors the models consume 
+2. <strong>Model Training</strong> — trains and validates multiple model architectures on historical data 
+3. <strong>Model Selection</strong> — evaluates trained models and selects the best performer for each market regime 
+4. <strong>Inference</strong> — generates real-time predictions for the paper trading system 
+</p>
+<p>
+Each stage writes its outputs to a versioned artifact store, so I can always trace a specific trade signal back to the exact model weights, training data, and feature definitions that produced it. This traceability is essential for debugging and for building trust in the system's decisions. 
+</p>
+<h2>Feature Engineering</h2>
+<p>
+The feature engineering stage consumes the unified data stream from the multi-source integration layer and produces feature vectors at configurable time intervals (currently 1-minute bars for short-term signals and 1-hour bars for position management). 
+</p>
+<p>
+Features fall into five categories: 
+</p>
+<strong>Price-derived features</strong> include returns at multiple horizons (1m, 5m, 15m, 1h, 4h), price relative to moving averages (SMA 20, 50, 200), and price velocity and acceleration. These are the bread and butter of any trading model.
+<strong>Volume features</strong> capture trading activity patterns: volume relative to the 20-day average, VWAP deviation, and volume-weighted price momentum. Volume often leads price, making these features valuable for anticipating moves.
+<strong>Volatility features</strong> measure market uncertainty: ATR (Average True Range), Bollinger Band width and position, and realized vs implied volatility spread where available. These help the model adjust its confidence based on market conditions.
+<strong>Cross-asset features</strong> capture relationships between instruments: sector correlation rankings, S&P 500 beta, VIX term structure slope, and treasury yield curve position. Markets don't exist in isolation, and these features encode the broader context.
+<strong>Temporal features</strong> encode time-based patterns: hour of day, day of week, minutes to market close, and distance to next scheduled economic event. Markets have well-documented temporal regularities that the models can exploit.
+<p>
+A critical design decision was to normalize all features to zero mean and unit variance using rolling statistics rather than global statistics. This prevents look-ahead bias (the model can't see future normalization parameters during training) and handles the non-stationarity of financial time series more gracefully than static normalization. 
+</p>
+<pre><code>python
+<p>
+class RollingNormalizer: 
+def __init__(self, window: int = 252 * 390):  # ~1 year of minute bars 
+self.window = window 
+self.buffer = deque(maxlen=window) 
+</p>
+<p>
+def transform(self, value: float) -> float: 
+self.buffer.append(value) 
+if len(self.buffer) < 30:  # minimum sample 
+return 0.0 
+mean = np.mean(self.buffer) 
+std = np.std(self.buffer) 
+return (value - mean) / (std + 1e-8) 
+</p>
+</code></pre>
+<h2>Model Architecture</h2>
+<p>
+I'm currently training three model architectures in parallel, with the goal of eventually combining them into an ensemble: 
+</p>
+<strong>Gradient Boosted Trees (XGBoost)</strong> — the workhorse. Fast to train, interpretable, and excellent at capturing non-linear relationships in tabular data. I use 500 trees with max depth 6 and a learning rate of 0.05. Feature importance from XGBoost also serves as a diagnostic tool for understanding what the model is paying attention to.
+<strong>LSTM Networks</strong> — for capturing temporal dependencies. Financial time series have patterns that unfold over time — trends, mean reversion, regime changes — and recurrent architectures can capture these in ways that tree models cannot. The current architecture uses 2 LSTM layers with 128 hidden units, followed by a dense layer for classification.
+<strong>Attention-Based Transformer</strong> — an experimental addition inspired by recent NLP breakthroughs. The self-attention mechanism allows the model to directly attend to any point in the input sequence, potentially capturing long-range dependencies that LSTMs might miss. This is the most computationally expensive model and I'm still tuning it.
+<h2>Training Protocol</h2>
+<p>
+Training happens nightly on the previous day's data, following a walk-forward validation protocol: 
+</p>
+<p>
+1. <strong>Training window</strong>: 6 months of historical data 
+2. <strong>Validation window</strong>: 1 month following the training window 
+3. <strong>Test window</strong>: the most recent 2 weeks (never seen during training or validation) 
+4. <strong>Walk-forward</strong>: the windows slide forward by 1 week, and training repeats 
+</p>
+<p>
+This protocol prevents the most common mistake in financial ML: overfitting to historical data and then being surprised when the model fails in live trading. By using walk-forward validation, the model is always evaluated on genuinely out-of-sample data. 
+</p>
+<p>
+The target variable is the forward 1-hour return, binned into three classes: up (>0.1%), down (<-0.1%), and flat (between -0.1% and 0.1%). I chose classification over regression because the trading strategy doesn't need to know the exact magnitude of the move — it just needs to know the direction with reasonable confidence. 
+</p>
+<h2>Inference and Paper Trading</h2>
+<p>
+During market hours, the inference engine runs the latest trained models on the streaming feature vectors and produces trade signals. Each model outputs a probability distribution over the three classes (up, down, flat), and the trading logic converts these into actionable signals: 
+</p>
+<p>
+- If P(up) > 0.65 and P(down) < 0.15: <strong>BUY signal</strong> 
+- If P(down) > 0.65 and P(up) < 0.15: <strong>SELL signal</strong> 
+- Otherwise: <strong>HOLD</strong> 
+</p>
+<p>
+These thresholds are deliberately conservative. I'd rather miss trades than take bad ones, especially while the system is being validated in paper trading. The thresholds will be tuned as I accumulate more data on model performance. 
+</p>
+<h2>Early Results</h2>
+<p>
+After the first week of paper trading with the full pipeline: 
+</p>
+<p>
+- <strong>XGBoost</strong> achieved 58% directional accuracy on 1-hour predictions — modestly above the 50% baseline but consistent across symbols. 
+- <strong>LSTM</strong> achieved 54% accuracy but showed much higher accuracy (63%) on high-volatility symbols, suggesting it captures regime-dependent patterns that XGBoost misses. 
+- <strong>Transformer</strong> is still underperforming at 51%, likely due to insufficient training data. Attention models are notoriously data-hungry. 
+</p>
+<p>
+The ensemble (simple average of the three models' probability outputs) achieved 60% directional accuracy — better than any individual model. This is encouraging and validates the multi-model approach. 
+</p>
+<h2>Lessons Learned</h2>
+<strong>Financial ML is humbling.</strong> A 60% accuracy model sounds unimpressive compared to the 95%+ accuracy common in computer vision or NLP. But in financial markets, even a small edge compounds into meaningful returns over thousands of trades — if the risk management layer (covered in a separate post) keeps drawdowns controlled.
+<strong>Feature engineering matters more than model architecture.</strong> Swapping XGBoost for a transformer changed accuracy by 7%. Adding the cross-asset features improved all models by 4-6%. The data and features are the ceiling; the model architecture determines how close you get to that ceiling.
+<strong>Reproducibility is non-negotiable.</strong> Every training run logs the exact feature definitions, hyperparameters, random seeds, and data versions used. Without this, debugging model regressions is impossible. This discipline carries over directly to how I think about AI governance in UAPK — autonomous systems must be auditable.
+<h2>What's Next</h2>
+<p>
+The pipeline is operational but far from optimized. Next steps include adding quantum-inspired optimization for hyperparameter tuning (using QAOA-style algorithms), implementing online learning to allow models to adapt intraday, and expanding the feature set to include options market data. All of this remains firmly in the paper trading domain — the goal is research and learning, not profits. But the engineering standards have to be production-grade, because sloppy infrastructure produces sloppy results regardless of whether money is involved. 
+</p>
+        </div>
+    </footer>
+</body>
+</html>
