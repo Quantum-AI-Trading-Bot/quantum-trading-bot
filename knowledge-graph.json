@@ -1,0 +1,1565 @@
+{
+  "metadata": {
+    "name": "ONE SYSTEM Knowledge Graph",
+    "description": "Knowledge graph of the ONE SYSTEM ecosystem by David Sanker",
+    "generated": "2026-03-14T18:46:47.998063",
+    "version": "1.0",
+    "license": "CC-BY-4.0"
+  },
+  "statistics": {
+    "total_nodes": 53,
+    "total_edges": 144,
+    "brands": 1,
+    "concepts": 3,
+    "articles": 48,
+    "shared_concepts": 0
+  },
+  "nodes": [
+    {
+      "id": "person:david-sanker",
+      "type": "Person",
+      "name": "David Sanker",
+      "properties": {
+        "jobTitle": "Lawyer & AI Engineer",
+        "url": "https://lawkraft.com",
+        "sameAs": [
+          "https://de.linkedin.com/in/sankerlaw",
+          "https://github.com/davidsanker"
+        ]
+      }
+    },
+    {
+      "id": "brand:quantum_trading",
+      "type": "Organization",
+      "name": "Quantum AI Trading Bot",
+      "properties": {
+        "url": "https://quantum-ai-trading-bot.info",
+        "description": "Quantum mechanics and AI-powered trading research platform. Currently in paper trading and educational research phase.",
+        "keywords": [
+          "Quantum AI",
+          "Trading Research",
+          "Paper Trading",
+          "ML Trading"
+        ],
+        "foundingDate": "2025"
+      }
+    },
+    {
+      "id": "concept:quantum-ai-trading",
+      "type": "Concept",
+      "name": "Quantum AI Trading",
+      "properties": {
+        "definition": "Research combining quantum computing principles with machine learning for financial market analysis and trading strategy development. Currently in paper trading phase.",
+        "domain": "artificial intelligence"
+      }
+    },
+    {
+      "id": "concept:paper-trading",
+      "type": "Concept",
+      "name": "Paper Trading",
+      "properties": {
+        "definition": "Simulated trading using real market data but virtual capital, used to test and validate trading strategies before risking actual funds.",
+        "domain": "financial technology"
+      }
+    },
+    {
+      "id": "concept:ml-trading-research",
+      "type": "Concept",
+      "name": "ML Trading Research",
+      "properties": {
+        "definition": "Application of machine learning models to financial market data for pattern recognition, prediction, and strategy optimization.",
+        "domain": "artificial intelligence"
+      }
+    },
+    {
+      "id": "article:2026-03-13-architecting-my-paper-trading-system-from-data-pi",
+      "type": "Article",
+      "name": "Architecting My Paper Trading System: From Data Pipelines to Predictions",
+      "properties": {
+        "url": "/blog/2026-03-13-architecting-my-paper-trading-system-from-data-pip",
+        "date": "2026-03-10",
+        "wordCount": 1151,
+        "topics": [
+          "The Architecture of My Paper Trading System: Data Pipelines to Predictions"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-13-why-i-started-building-a-trading-bot-and-what-i-a",
+      "type": "Article",
+      "name": "Why I Started Building a Trading Bot (And What I Actually Hope to Learn)",
+      "properties": {
+        "url": "/blog/2026-03-13-why-i-started-building-a-trading-bot-and-what-i-ac",
+        "date": "2026-03-10",
+        "wordCount": 1193,
+        "topics": [
+          "Why I Started Building a Trading Bot (And What I Actually Hope to Learn)"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-why-i-open-sourced-my-trading-bot-and-what-i-hope",
+      "type": "Article",
+      "name": "Why I Open-Sourced My Trading Bot (And What I Hope the Community Builds)",
+      "properties": {
+        "url": "/blog/2026-03-10-why-i-open-sourced-my-trading-bot-and-what-i-hope-",
+        "date": "2026-03-10",
+        "wordCount": 1165,
+        "topics": [
+          "Why I Open-Sourced My Trading Bot (And What I Hope the Community Builds)"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-when-experiments-fail-data-driven-lessons-and-ins",
+      "type": "Article",
+      "name": "When Experiments Fail: Data-Driven Lessons and Insights",
+      "properties": {
+        "url": "/blog/2026-03-10-when-experiments-fail-data-driven-lessons-and-insi",
+        "date": "2026-03-10",
+        "wordCount": 1236,
+        "topics": [
+          "This Week's Experiment Failed — Here's What the Data Shows"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-unpacking-reinforcement-learning-missteps-in-fina",
+      "type": "Article",
+      "name": "Unpacking Reinforcement Learning Missteps in Financial Markets",
+      "properties": {
+        "url": "/blog/2026-03-10-unpacking-reinforcement-learning-missteps-in-finan",
+        "date": "2026-03-10",
+        "wordCount": 1325,
+        "topics": [
+          "What Reinforcement Learning Gets Wrong About Markets"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-understanding-transaction-cost-analysis-bridging-",
+      "type": "Article",
+      "name": "Understanding Transaction Cost Analysis: Bridging the Gap Between Backtesting Returns and Reality",
+      "properties": {
+        "url": "/blog/2026-03-10-understanding-transaction-cost-analysis-bridging-t",
+        "date": "2026-03-10",
+        "wordCount": 1430,
+        "topics": [
+          "Transaction Cost Analysis: Why Backtesting Returns Don't Match Reality"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-understanding-feature-importance-in-trading-ml-in",
+      "type": "Article",
+      "name": "Understanding Feature Importance in Trading ML: Insights into Model Learning",
+      "properties": {
+        "url": "/blog/2026-03-10-understanding-feature-importance-in-trading-ml-ins",
+        "date": "2026-03-10",
+        "wordCount": 1206,
+        "topics": [
+          "Feature Importance in Trading ML: What the Models Actually Learn"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-transforming-trading-insights-into-dynamic-ai-inn",
+      "type": "Article",
+      "name": "Transforming Trading Insights into Dynamic AI Innovations at Lawkraft",
+      "properties": {
+        "url": "/blog/2026-03-10-transforming-trading-insights-into-dynamic-ai-inno",
+        "date": "2026-03-10",
+        "wordCount": 1159,
+        "topics": [
+          "How My Trading Research Transfers to Other AI Projects at Lawkraft"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-the-psychology-of-paper-trading-why-its-harder-th",
+      "type": "Article",
+      "name": "The Psychology of Paper Trading: Why It's Harder Than You Think",
+      "properties": {
+        "url": "/blog/2026-03-10-the-psychology-of-paper-trading-why-its-harder-tha",
+        "date": "2026-03-10",
+        "wordCount": 1246,
+        "topics": [
+          "The Psychology of Paper Trading: Why It's Harder Than You Think"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-the-gpu-bill-unraveling-the-costs-of-machine-lear",
+      "type": "Article",
+      "name": "The GPU Bill: Unraveling the Costs of Machine Learning in Trading",
+      "properties": {
+        "url": "/blog/2026-03-10-the-gpu-bill-unraveling-the-costs-of-machine-learn",
+        "date": "2026-03-10",
+        "wordCount": 1178,
+        "topics": [
+          "The GPU Bill: What It Actually Costs to Train ML Models for Trading"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-sector-rotation-signals-timing-momentum-across-in",
+      "type": "Article",
+      "name": "Sector Rotation Signals: Timing Momentum Across Industries",
+      "properties": {
+        "url": "/blog/2026-03-10-sector-rotation-signals-timing-momentum-across-ind",
+        "date": "2026-03-10",
+        "wordCount": 1321,
+        "topics": [
+          "Sector Rotation Signals: A Research Note on Momentum Across Industries"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-responsible-ai-in-trading-quantum-ai-bots-e",
+      "type": "Article",
+      "name": "Responsible AI in Trading: Quantum AI Bot's Exclusive Paper Trading",
+      "properties": {
+        "url": "/blog/2026-01-29-title-responsible-ai-in-trading-quantum-ai-bots-ex",
+        "date": "2026-01-29",
+        "wordCount": 1534,
+        "topics": [
+          "Quantum AI Trading Bot demonstrates responsible AI development through exclusive paper trading. Why research and education matter more than profits in algorithmic trading AI"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-quantum-leap-implementing-gradient-boosting-in-ai",
+      "type": "Article",
+      "name": "Quantum Leap: Implementing Gradient Boosting in AI Trading Bots",
+      "properties": {
+        "url": "/blog/2026-01-29-quantum-leap-implementing-gradient-boosting-in-ai-",
+        "date": "2026-01-29",
+        "wordCount": 1475,
+        "topics": [
+          "Gradient boosting implementation in Quantum AI Trading Bot for generating trading signals in paper mode. Tutorial covering feature engineering, training, and evaluation for learning purposes"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-quantum-computing-in-trading-bridging-reality-and",
+      "type": "Article",
+      "name": "Quantum Computing in Trading: Bridging Reality and Hype",
+      "properties": {
+        "url": "/blog/2026-03-10-quantum-computing-in-trading-bridging-reality-and-",
+        "date": "2026-03-10",
+        "wordCount": 1136,
+        "topics": [
+          "Quantum Computing and Trading: Where We Are vs. Where the Hype Says"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-in-portfolio-optimization-a-deep",
+      "type": "Article",
+      "name": "Quantum AI in Portfolio Optimization: A Deep Dive",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-in-portfolio-optimization-a-deep-",
+        "date": "2026-01-29",
+        "wordCount": 1638,
+        "topics": [
+          "Portfolio optimization research in Quantum AI Trading Bot paper trading. ML approaches to asset allocation, correlation modeling, and risk-adjusted portfolio construction"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-unveiling-market-mi",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Unveiling Market Microstructure",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-unveiling-market-mic",
+        "date": "2026-01-29",
+        "wordCount": 1617,
+        "topics": [
+          "Quantum AI Trading Bot research into market microstructure. Order book dynamics, bid-ask spread modeling, and execution quality analysis in paper trading experiments"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-12-quantum-ai-trading-bots-unlocking-market-pre",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Unlocking Market Predictions with LSTM Networks",
+      "properties": {
+        "url": "/blog/2026-03-12-quantum-ai-trading-bots-unlocking-market-pre",
+        "date": "2026-01-29",
+        "wordCount": 1583,
+        "topics": [
+          "Quantum AI Trading Bot experiments with LSTM networks for market prediction in paper trading. Educational guide to time series prediction, training strategies, and model evaluation"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-time-series-forecas",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Time Series Forecasting with ARIMA, LSTM, and Transformers",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-time-series-forecast",
+        "date": "2026-01-29",
+        "wordCount": 1744,
+        "topics": [
+          "Time series forecasting experiments in Quantum AI Trading Bot paper trading. Comparative analysis of ARIMA, LSTM, Transformer models for market prediction research"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-technical-indicator",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Technical Indicators vs. Machine Learning",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-technical-indicators",
+        "date": "2026-01-29",
+        "wordCount": 1878,
+        "topics": [
+          "Quantum AI Trading Bot comparison of traditional technical indicators vs pure ML approaches in paper trading. Research findings on when each performs better"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-reinforcement-learn",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Reinforcement Learning in Action",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-reinforcement-learni",
+        "date": "2026-01-29",
+        "wordCount": 1548,
+        "topics": [
+          "Reinforcement learning experiments in Quantum AI Trading Bot paper trading research. Technical exploration of RL for portfolio optimization and strategy discovery"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-real-time-vs-batch-",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Real-Time vs. Batch Processing",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-real-time-vs-batch-p",
+        "date": "2026-01-29",
+        "wordCount": 1600,
+        "topics": [
+          "Quantum AI Trading Bot architecture trade-offs between real-time and batch ML processing in paper trading. Latency, accuracy, and computational cost considerations for research"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-02-26-quantum-ai-trading-bots-mastering-ensemble-m",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Mastering Ensemble ML with LSTM and Boosting",
+      "properties": {
+        "url": "/blog/2026-02-26-quantum-ai-trading-bots-mastering-ensemble-m",
+        "date": "2026-01-29",
+        "wordCount": 1859,
+        "topics": [
+          "Quantum AI Trading Bot uses ensemble ML (LSTM, gradient boosting) in paper trading. Technical guide to combining models, weighting strategies, and validation in research environment"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-insights-from-monit",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Insights from Monitoring 289 Symbols",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-insights-from-monito",
+        "date": "2026-01-29",
+        "wordCount": 1505,
+        "topics": [
+          "Quantum AI Trading Bot insights from monitoring 289 symbols in paper trading. Lessons about market behavior, model performance variation, and research discoveries"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-harnessing-alternat",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Harnessing Alternative Data",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-harnessing-alternati",
+        "date": "2026-01-29",
+        "wordCount": 1478,
+        "topics": [
+          "Quantum AI Trading Bot experiments with alternative data in paper trading research. Evaluating sentiment, satellite, web scraping, and other non-traditional data sources"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-democratizing-quant",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: Democratizing Quantitative Finance",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-democratizing-quanti",
+        "date": "2026-01-29",
+        "wordCount": 1678,
+        "topics": [
+          "Quantum AI Trading Bot aims to democratize institutional quant methods through education and open tools. Making sophisticated ML techniques accessible for individual learning and research"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bots-a-responsible-devel",
+      "type": "Article",
+      "name": "Quantum AI Trading Bots: A Responsible Development Framework",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-a-responsible-develo",
+        "date": "2026-01-29",
+        "wordCount": 1501,
+        "topics": [
+          "Quantum AI Trading Bot educational framework for responsible algorithmic trading development. Ethics, risk awareness, paper trading first, and avoiding common pitfalls"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-05-quantum-ai-trading-bot-mastering-risk-manage",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: Mastering Risk Management in Paper Trading",
+      "properties": {
+        "url": "/blog/2026-03-05-quantum-ai-trading-bot-mastering-risk-manage",
+        "date": "2026-01-29",
+        "wordCount": 1661,
+        "topics": [
+          "Quantum AI Trading Bot emphasizes risk management in paper trading research. Framework covering position sizing, stop losses, portfolio constraints, and responsible experimentation"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-quantum-ai-trading-bot-mastering-position-sizing",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: Mastering Position Sizing",
+      "properties": {
+        "url": "/blog/2026-01-29-quantum-ai-trading-bot-mastering-position-sizing",
+        "date": "2026-01-29",
+        "wordCount": 1926,
+        "topics": [
+          "Quantum AI Trading Bot position sizing research using Kelly Criterion, volatility targeting, and other risk-adjusted methods in paper trading for educational exploration"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-quantum-ai-trading-bot-mastering-market-regime-de",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: Mastering Market Regime Detection",
+      "properties": {
+        "url": "/blog/2026-01-29-quantum-ai-trading-bot-mastering-market-regime-det",
+        "date": "2026-01-29",
+        "wordCount": 1586,
+        "topics": [
+          "Quantum AI Trading Bot market regime detection in paper trading research. ML approaches to identifying bull/bear/sideways markets and adapting strategies accordingly"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-quantum-ai-trading-bot-mastering-data-integration",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: Mastering Data Integration for Paper Trading",
+      "properties": {
+        "url": "/blog/2026-01-29-quantum-ai-trading-bot-mastering-data-integration-",
+        "date": "2026-01-29",
+        "wordCount": 1579,
+        "topics": [
+          "Data integration in Quantum AI Trading Bot paper trading research. Working with market data, alternative data, and ensuring quality for ML model training and validation"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-quantum-ai-trading-bot-mastering-backtestin",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: Mastering Backtesting with Paper Trading",
+      "properties": {
+        "url": "/blog/2026-01-29-title-quantum-ai-trading-bot-mastering-backtesting",
+        "date": "2026-01-29",
+        "wordCount": 1644,
+        "topics": [
+          "Quantum AI Trading Bot backtesting approaches using paper trading data. Methodologies for historical testing, avoiding overfitting, and learning from simulated performance"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-quantum-ai-trading-bot-feature-engineering-experi",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: Feature Engineering Experiments",
+      "properties": {
+        "url": "/blog/2026-01-29-quantum-ai-trading-bot-feature-engineering-experim",
+        "date": "2026-01-29",
+        "wordCount": 1761,
+        "topics": [
+          "Feature engineering experiments in Quantum AI Trading Bot paper trading research. Technical indicators, market microstructure features, and alternative data integration for educational purposes"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-quantum-ai-trading-bot-democratizing-quantitative",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: Democratizing Quantitative Trading",
+      "properties": {
+        "url": "/blog/2026-01-29-quantum-ai-trading-bot-democratizing-quantitative-",
+        "date": "2026-01-29",
+        "wordCount": 1904,
+        "topics": [
+          "Quantum AI Trading Bot vision for democratizing quantitative trading through education and tools. Making institutional methods accessible for individual learning without encouraging reckless trading"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-02-19-quantum-ai-trading-bot-a-paper-trading-revol",
+      "type": "Article",
+      "name": "Quantum AI Trading Bot: A Paper Trading Revolution",
+      "properties": {
+        "url": "/blog/2026-02-19-quantum-ai-trading-bot-a-paper-trading-revol",
+        "date": "2026-01-29",
+        "wordCount": 1569,
+        "topics": [
+          "Quantum AI Trading Bot operates exclusively in paper trading mode for research and education. Personal essay on responsible AI development, learning focus, and why profits aren't the goal"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-optimal-position-sizing-algorithm-from-concept-to",
+      "type": "Article",
+      "name": "Optimal Position Sizing Algorithm: From Concept to Execution",
+      "properties": {
+        "url": "/blog/2026-03-10-optimal-position-sizing-algorithm-from-concept-to-",
+        "date": "2026-03-10",
+        "wordCount": 1299,
+        "topics": [
+          "My Position Sizing Algorithm: From Theory to Implementation"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-navigating-slippage-fill-rates-and-execution-qual",
+      "type": "Article",
+      "name": "Navigating Slippage, Fill Rates, and Execution Quality in Paper Trading: An In-Depth Analysis",
+      "properties": {
+        "url": "/blog/2026-03-10-navigating-slippage-fill-rates-and-execution-quali",
+        "date": "2026-03-10",
+        "wordCount": 1167,
+        "topics": [
+          "Slippage, Fill Rates, and Execution Quality in Paper Trading"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-navigating-regulatory-waters-algorithmic-trading-",
+      "type": "Article",
+      "name": "Navigating Regulatory Waters: Algorithmic Trading in the EU and US",
+      "properties": {
+        "url": "/blog/2026-03-10-navigating-regulatory-waters-algorithmic-trading-i",
+        "date": "2026-03-10",
+        "wordCount": 1229,
+        "topics": [
+          "Regulatory Considerations for Algorithmic Trading in the EU and US"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-monthly-research-update-successes-setbacks-and-fu",
+      "type": "Article",
+      "name": "Monthly Research Update: Successes, Setbacks, and Future Directions in Law and Technology",
+      "properties": {
+        "url": "/blog/2026-03-10-monthly-research-update-successes-setbacks-and-fut",
+        "date": "2026-03-10",
+        "wordCount": 1258,
+        "topics": [
+          "Monthly Research Update: What Worked, What Didn't, What's Next"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-mastering-walk-forward-analysis-in-quantum-",
+      "type": "Article",
+      "name": "Mastering Walk-Forward Analysis in Quantum AI Trading",
+      "properties": {
+        "url": "/blog/2026-01-29-title-mastering-walk-forward-analysis-in-quantum-a",
+        "date": "2026-01-29",
+        "wordCount": 1612,
+        "topics": [
+          "Walk-forward analysis methodology in Quantum AI Trading Bot paper trading research. Avoiding overfitting through proper train/test/validation splits and rolling windows"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-learning-from-failures-in-quantum-ai-tradin",
+      "type": "Article",
+      "name": "Learning from Failures in Quantum AI Trading Bots",
+      "properties": {
+        "url": "/blog/2026-01-29-title-learning-from-failures-in-quantum-ai-trading",
+        "date": "2026-01-29",
+        "wordCount": 1570,
+        "topics": [
+          "Learning from failures in Quantum AI Trading Bot paper trading experiments. Honest discussion of failed strategies, overfitting mistakes, and research dead-ends for educational value"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-harnessing-the-power-of-ensemble-models-lstm-xgbo",
+      "type": "Article",
+      "name": "Harnessing the Power of Ensemble Models: LSTM, XGBoost, and Bayesian Methods",
+      "properties": {
+        "url": "/blog/2026-03-10-harnessing-the-power-of-ensemble-models-lstm-xgboo",
+        "date": "2026-03-10",
+        "wordCount": 1214,
+        "topics": [
+          "The Case for Ensemble Models: Combining LSTM, XGBoost, and Bayesian Methods"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-from-paper-trading-to-uapk-how-this-bot-becomes-a",
+      "type": "Article",
+      "name": "From Paper Trading to UAPK: How This Bot Becomes an Autonomous Business",
+      "properties": {
+        "url": "/blog/2026-03-10-from-paper-trading-to-uapk-how-this-bot-becomes-an",
+        "date": "2026-03-10",
+        "wordCount": 1448,
+        "topics": [
+          "From Paper Trading to UAPK: How This Bot Becomes an Autonomous Business"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-exploring-alternative-data-sources-what-works-and",
+      "type": "Article",
+      "name": "Exploring Alternative Data Sources: What Works and Why?",
+      "properties": {
+        "url": "/blog/2026-03-10-exploring-alternative-data-sources-what-works-and-",
+        "date": "2026-03-10",
+        "wordCount": 1301,
+        "topics": [
+          "Alternative Data Sources I've Tried (And Which Ones Actually Help)"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-01-29-title-evaluating-quantum-ai-trading-bots-metrics-",
+      "type": "Article",
+      "name": "Evaluating Quantum AI Trading Bots: Metrics Beyond Profit",
+      "properties": {
+        "url": "/blog/2026-01-29-title-evaluating-quantum-ai-trading-bots-metrics-b",
+        "date": "2026-01-29",
+        "wordCount": 1806,
+        "topics": [
+          "Quantum AI Trading Bot evaluation metrics in paper trading. Beyond profit: Sharpe ratio, drawdown, win rate, and other metrics for assessing trading algorithm quality in research"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-evaluating-model-performance-beyond-the-sharpe-ra",
+      "type": "Article",
+      "name": "Evaluating Model Performance: Beyond the Sharpe Ratio",
+      "properties": {
+        "url": "/blog/2026-03-10-evaluating-model-performance-beyond-the-sharpe-rat",
+        "date": "2026-03-10",
+        "wordCount": 1253,
+        "topics": [
+          "How I Evaluate Model Performance Beyond Sharpe Ratio"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-building-a-resilient-risk-management-system-lesso",
+      "type": "Article",
+      "name": "Building a Resilient Risk Management System: Lessons from a 40% Loss in Paper Trading",
+      "properties": {
+        "url": "/blog/2026-03-10-building-a-resilient-risk-management-system-lesson",
+        "date": "2026-03-10",
+        "wordCount": 1111,
+        "topics": [
+          "The Risk Management System I Built After Losing 40% in Paper Trading"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-building-a-market-regime-detector-the-full-code-w",
+      "type": "Article",
+      "name": "Building a Market Regime Detector: The Full Code Walkthrough",
+      "properties": {
+        "url": "/blog/2026-03-10-building-a-market-regime-detector-the-full-code-wa",
+        "date": "2026-03-10",
+        "wordCount": 1116,
+        "topics": [
+          "Building a Market Regime Detector: The Full Code Walkthrough"
+        ]
+      }
+    },
+    {
+      "id": "article:2026-03-10-building-real-time-dashboards-for-effective-paper",
+      "type": "Article",
+      "name": "Building Real-Time Dashboards for Effective Paper Trading Monitoring",
+      "properties": {
+        "url": "/blog/2026-03-10-building-real-time-dashboards-for-effective-paper-",
+        "date": "2026-03-10",
+        "wordCount": 1300,
+        "topics": [
+          "Building Real-Time Dashboards for Paper Trading Monitoring"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "person:david-sanker",
+      "to": "brand:quantum_trading",
+      "type": "founder",
+      "label": "founded"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "concept:quantum-ai-trading",
+      "type": "covers",
+      "label": "covers topic"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "concept:paper-trading",
+      "type": "covers",
+      "label": "covers topic"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "concept:ml-trading-research",
+      "type": "covers",
+      "label": "covers topic"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "brand:lawkraft",
+      "type": "ecosystem_link",
+      "label": "AI Consulting"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "brand:mother_ai",
+      "type": "ecosystem_link",
+      "label": "Agent Platform"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "brand:uapk",
+      "type": "ecosystem_link",
+      "label": "AI Governance"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-13-architecting-my-paper-trading-system-from-data-pi",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-13-architecting-my-paper-trading-system-from-data-pi",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-13-why-i-started-building-a-trading-bot-and-what-i-a",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-13-why-i-started-building-a-trading-bot-and-what-i-a",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-why-i-open-sourced-my-trading-bot-and-what-i-hope",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-why-i-open-sourced-my-trading-bot-and-what-i-hope",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-when-experiments-fail-data-driven-lessons-and-ins",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-unpacking-reinforcement-learning-missteps-in-fina",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-understanding-transaction-cost-analysis-bridging-",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-understanding-feature-importance-in-trading-ml-in",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-understanding-feature-importance-in-trading-ml-in",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-10-understanding-feature-importance-in-trading-ml-in",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-transforming-trading-insights-into-dynamic-ai-inn",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-transforming-trading-insights-into-dynamic-ai-inn",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-10-transforming-trading-insights-into-dynamic-ai-inn",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-10-transforming-trading-insights-into-dynamic-ai-inn",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-the-psychology-of-paper-trading-why-its-harder-th",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-the-psychology-of-paper-trading-why-its-harder-th",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-the-gpu-bill-unraveling-the-costs-of-machine-lear",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-the-gpu-bill-unraveling-the-costs-of-machine-lear",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-10-the-gpu-bill-unraveling-the-costs-of-machine-lear",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-10-the-gpu-bill-unraveling-the-costs-of-machine-lear",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-sector-rotation-signals-timing-momentum-across-in",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-responsible-ai-in-trading-quantum-ai-bots-e",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-responsible-ai-in-trading-quantum-ai-bots-e",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-responsible-ai-in-trading-quantum-ai-bots-e",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-responsible-ai-in-trading-quantum-ai-bots-e",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-quantum-leap-implementing-gradient-boosting-in-ai",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-quantum-leap-implementing-gradient-boosting-in-ai",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-leap-implementing-gradient-boosting-in-ai",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-quantum-computing-in-trading-bridging-reality-and",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-quantum-computing-in-trading-bridging-reality-and",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-10-quantum-computing-in-trading-bridging-reality-and",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-in-portfolio-optimization-a-deep",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-in-portfolio-optimization-a-deep",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-in-portfolio-optimization-a-deep",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-in-portfolio-optimization-a-deep",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-unveiling-market-mi",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-unveiling-market-mi",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-unveiling-market-mi",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-unveiling-market-mi",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-12-quantum-ai-trading-bots-unlocking-market-pre",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-12-quantum-ai-trading-bots-unlocking-market-pre",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-12-quantum-ai-trading-bots-unlocking-market-pre",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-time-series-forecas",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-time-series-forecas",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-time-series-forecas",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-time-series-forecas",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-technical-indicator",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-technical-indicator",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-technical-indicator",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-technical-indicator",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-reinforcement-learn",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-reinforcement-learn",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-reinforcement-learn",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-reinforcement-learn",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-real-time-vs-batch-",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-real-time-vs-batch-",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-real-time-vs-batch-",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-real-time-vs-batch-",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-02-26-quantum-ai-trading-bots-mastering-ensemble-m",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-02-26-quantum-ai-trading-bots-mastering-ensemble-m",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-02-26-quantum-ai-trading-bots-mastering-ensemble-m",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-02-26-quantum-ai-trading-bots-mastering-ensemble-m",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-insights-from-monit",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-insights-from-monit",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-insights-from-monit",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-insights-from-monit",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-harnessing-alternat",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-harnessing-alternat",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-harnessing-alternat",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-harnessing-alternat",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-democratizing-quant",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-democratizing-quant",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-democratizing-quant",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-democratizing-quant",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bots-a-responsible-devel",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-a-responsible-devel",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bots-a-responsible-devel",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-05-quantum-ai-trading-bot-mastering-risk-manage",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-05-quantum-ai-trading-bot-mastering-risk-manage",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-05-quantum-ai-trading-bot-mastering-risk-manage",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-03-05-quantum-ai-trading-bot-mastering-risk-manage",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-quantum-ai-trading-bot-mastering-position-sizing",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-position-sizing",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-position-sizing",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-position-sizing",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-quantum-ai-trading-bot-mastering-market-regime-de",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-market-regime-de",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-market-regime-de",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-market-regime-de",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-quantum-ai-trading-bot-mastering-data-integration",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-data-integration",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-data-integration",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-mastering-data-integration",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-quantum-ai-trading-bot-mastering-backtestin",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bot-mastering-backtestin",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-quantum-ai-trading-bot-mastering-backtestin",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-quantum-ai-trading-bot-feature-engineering-experi",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-feature-engineering-experi",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-feature-engineering-experi",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-feature-engineering-experi",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-quantum-ai-trading-bot-democratizing-quantitative",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-democratizing-quantitative",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-quantum-ai-trading-bot-democratizing-quantitative",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-02-19-quantum-ai-trading-bot-a-paper-trading-revol",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-02-19-quantum-ai-trading-bot-a-paper-trading-revol",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-02-19-quantum-ai-trading-bot-a-paper-trading-revol",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-02-19-quantum-ai-trading-bot-a-paper-trading-revol",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-optimal-position-sizing-algorithm-from-concept-to",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-navigating-slippage-fill-rates-and-execution-qual",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-navigating-slippage-fill-rates-and-execution-qual",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-navigating-regulatory-waters-algorithmic-trading-",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-navigating-regulatory-waters-algorithmic-trading-",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-monthly-research-update-successes-setbacks-and-fu",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-mastering-walk-forward-analysis-in-quantum-",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-mastering-walk-forward-analysis-in-quantum-",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-mastering-walk-forward-analysis-in-quantum-",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-mastering-walk-forward-analysis-in-quantum-",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-learning-from-failures-in-quantum-ai-tradin",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-learning-from-failures-in-quantum-ai-tradin",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-learning-from-failures-in-quantum-ai-tradin",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-learning-from-failures-in-quantum-ai-tradin",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-harnessing-the-power-of-ensemble-models-lstm-xgbo",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-from-paper-trading-to-uapk-how-this-bot-becomes-a",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-from-paper-trading-to-uapk-how-this-bot-becomes-a",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-exploring-alternative-data-sources-what-works-and",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-01-29-title-evaluating-quantum-ai-trading-bots-metrics-",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-01-29-title-evaluating-quantum-ai-trading-bots-metrics-",
+      "to": "concept:quantum-ai-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-evaluating-quantum-ai-trading-bots-metrics-",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "article:2026-01-29-title-evaluating-quantum-ai-trading-bots-metrics-",
+      "to": "concept:ml-trading-research",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-evaluating-model-performance-beyond-the-sharpe-ra",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-building-a-resilient-risk-management-system-lesso",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-building-a-resilient-risk-management-system-lesso",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-building-a-market-regime-detector-the-full-code-w",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "brand:quantum_trading",
+      "to": "article:2026-03-10-building-real-time-dashboards-for-effective-paper",
+      "type": "published",
+      "label": "published"
+    },
+    {
+      "from": "article:2026-03-10-building-real-time-dashboards-for-effective-paper",
+      "to": "concept:paper-trading",
+      "type": "discusses",
+      "label": "discusses"
+    }
+  ]
+}
