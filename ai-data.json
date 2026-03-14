@@ -1,0 +1,487 @@
+{
+  "brand": "Quantum AI Trading Bot",
+  "description": "Quantum mechanics and AI-powered trading research platform. Currently in paper trading and educational research phase.",
+  "url": "https://quantum-ai-trading-bot.info",
+  "updated": "2026-03-14",
+  "topics": [
+    {
+      "name": "Quantum AI Trading",
+      "definition": "Research combining quantum computing principles with machine learning for financial market analysis and trading strategy development. Currently in paper trading phase."
+    },
+    {
+      "name": "Paper Trading",
+      "definition": "Simulated trading using real market data but virtual capital, used to test and validate trading strategies before risking actual funds."
+    },
+    {
+      "name": "ML Trading Research",
+      "definition": "Application of machine learning models to financial market data for pattern recognition, prediction, and strategy optimization."
+    }
+  ],
+  "articles": [
+    {
+      "title": "Architecting My Paper Trading System: From Data Pipelines to Predictions",
+      "url": "/blog/2026-03-13-architecting-my-paper-trading-system-from-data-pip",
+      "date": "2026-03-10",
+      "keywords": [
+        "The Architecture of My Paper Trading System: Data Pipelines to Predictions",
+        "trading",
+        "architecture",
+        "datascience",
+        "machinelearning",
+        "investment"
+      ]
+    },
+    {
+      "title": "Why I Started Building a Trading Bot (And What I Actually Hope to Learn)",
+      "url": "/blog/2026-03-13-why-i-started-building-a-trading-bot-and-what-i-ac",
+      "date": "2026-03-10",
+      "keywords": [
+        "Why I Started Building a Trading Bot (And What I Actually Hope to Learn)",
+        "tradingbot",
+        "fintech",
+        "algorithmictrading",
+        "machinelearning",
+        "financialmarkets"
+      ]
+    },
+    {
+      "title": "Why I Open-Sourced My Trading Bot (And What I Hope the Community Builds)",
+      "url": "/blog/2026-03-10-why-i-open-sourced-my-trading-bot-and-what-i-hope-",
+      "date": "2026-03-10",
+      "keywords": [
+        "Why I Open-Sourced My Trading Bot (And What I Hope the Community Builds)",
+        "open-source",
+        "trading-bot",
+        "algorithmic-trading",
+        "collaboration",
+        "innovation"
+      ]
+    },
+    {
+      "title": "When Experiments Fail: Data-Driven Lessons and Insights",
+      "url": "/blog/2026-03-10-when-experiments-fail-data-driven-lessons-and-insi",
+      "date": "2026-03-10",
+      "keywords": [
+        "This Week's Experiment Failed — Here's What the Data Shows",
+        "dataanalysis",
+        "techinnovation",
+        "collaboration",
+        "continuousimprovement",
+        "experiments"
+      ]
+    },
+    {
+      "title": "Unpacking Reinforcement Learning Missteps in Financial Markets",
+      "url": "/blog/2026-03-10-unpacking-reinforcement-learning-missteps-in-finan",
+      "date": "2026-03-10",
+      "keywords": [
+        "What Reinforcement Learning Gets Wrong About Markets",
+        "**",
+        "reinforcement",
+        "learning",
+        "stock",
+        "markets",
+        "AI",
+        "financial",
+        "compliance",
+        "machine",
+        "learning"
+      ]
+    },
+    {
+      "title": "Understanding Transaction Cost Analysis: Bridging the Gap Between Backtesting Returns and Reality",
+      "url": "/blog/2026-03-10-understanding-transaction-cost-analysis-bridging-t",
+      "date": "2026-03-10",
+      "keywords": [
+        "Transaction Cost Analysis: Why Backtesting Returns Don't Match Reality",
+        "transactioncosts",
+        "backtesting",
+        "investmentstrategies",
+        "financialmarkets",
+        "trading"
+      ]
+    },
+    {
+      "title": "Understanding Feature Importance in Trading ML: Insights into Model Learning",
+      "url": "/blog/2026-03-10-understanding-feature-importance-in-trading-ml-ins",
+      "date": "2026-03-10",
+      "keywords": [
+        "Feature Importance in Trading ML: What the Models Actually Learn"
+      ]
+    },
+    {
+      "title": "Transforming Trading Insights into Dynamic AI Innovations at Lawkraft",
+      "url": "/blog/2026-03-10-transforming-trading-insights-into-dynamic-ai-inno",
+      "date": "2026-03-10",
+      "keywords": [
+        "How My Trading Research Transfers to Other AI Projects at Lawkraft",
+        "AIinnovation",
+        "legaltech",
+        "predictiveanalytics",
+        "contractautomation",
+        "datacompliance"
+      ]
+    },
+    {
+      "title": "The Psychology of Paper Trading: Why It's Harder Than You Think",
+      "url": "/blog/2026-03-10-the-psychology-of-paper-trading-why-its-harder-tha",
+      "date": "2026-03-10",
+      "keywords": [
+        "The Psychology of Paper Trading: Why It's Harder Than You Think",
+        "papertrading",
+        "tradingpsychology",
+        "cognitivebias",
+        "marketstrategy",
+        "tradingresilience"
+      ]
+    },
+    {
+      "title": "The GPU Bill: Unraveling the Costs of Machine Learning in Trading",
+      "url": "/blog/2026-03-10-the-gpu-bill-unraveling-the-costs-of-machine-learn",
+      "date": "2026-03-10",
+      "keywords": [
+        "The GPU Bill: What It Actually Costs to Train ML Models for Trading",
+        "GPU",
+        "MachineLearning",
+        "Trading",
+        "CostManagement",
+        "CloudComputing"
+      ]
+    },
+    {
+      "title": "Sector Rotation Signals: Timing Momentum Across Industries",
+      "url": "/blog/2026-03-10-sector-rotation-signals-timing-momentum-across-ind",
+      "date": "2026-03-10",
+      "keywords": [
+        "Sector Rotation Signals: A Research Note on Momentum Across Industries",
+        "sector",
+        "rotation",
+        "investment",
+        "strategy",
+        "economic",
+        "cycle",
+        "momentum",
+        "investing",
+        "portfolio",
+        "management"
+      ]
+    },
+    {
+      "title": "Responsible AI in Trading: Quantum AI Bot's Exclusive Paper Trading",
+      "url": "/blog/2026-01-29-title-responsible-ai-in-trading-quantum-ai-bots-ex",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot demonstrates responsible AI development through exclusive paper trading. Why research and education matter more than profits in algorithmic trading AI",
+        "AI",
+        "quantum",
+        "computing",
+        "algorithmic",
+        "trading",
+        "responsible",
+        "AI",
+        "paper",
+        "trading",
+        "education",
+        "ethical",
+        "AI",
+        "trading",
+        "bots"
+      ]
+    },
+    {
+      "title": "Quantum Leap: Implementing Gradient Boosting in AI Trading Bots",
+      "url": "/blog/2026-01-29-quantum-leap-implementing-gradient-boosting-in-ai-",
+      "date": "2026-01-29",
+      "keywords": [
+        "Gradient boosting implementation in Quantum AI Trading Bot for generating trading signals in paper mode. Tutorial covering feature engineering, training, and evaluation for learning purposes",
+        "quantumcomputing",
+        "aitrading",
+        "gradientboosting",
+        "machinelearning",
+        "algorithmictrading",
+        "fintech",
+        "quantfinance"
+      ]
+    },
+    {
+      "title": "Quantum Computing in Trading: Bridging Reality and Hype",
+      "url": "/blog/2026-03-10-quantum-computing-in-trading-bridging-reality-and-",
+      "date": "2026-03-10",
+      "keywords": [
+        "Quantum Computing and Trading: Where We Are vs. Where the Hype Says",
+        "**",
+        "quantum",
+        "computing",
+        "trading",
+        "financial",
+        "technology",
+        "quantum",
+        "algorithms",
+        "fintech",
+        "trends"
+      ]
+    },
+    {
+      "title": "Quantum AI in Portfolio Optimization: A Deep Dive",
+      "url": "/blog/2026-01-29-title-quantum-ai-in-portfolio-optimization-a-deep-",
+      "date": "2026-01-29",
+      "keywords": [
+        "Portfolio optimization research in Quantum AI Trading Bot paper trading. ML approaches to asset allocation, correlation modeling, and risk-adjusted portfolio construction",
+        "**",
+        "quantumcomputing",
+        "AIfinance",
+        "portfoliomanagement",
+        "tradingbots",
+        "assetallocation",
+        "riskmanagement",
+        "financialinnovation"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Unveiling Market Microstructure",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-unveiling-market-mic",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot research into market microstructure. Order book dynamics, bid-ask spread modeling, and execution quality analysis in paper trading experiments",
+        "QuantumComputing",
+        "AI",
+        "TradingBots",
+        "FinancialMarkets",
+        "MarketMicrostructure",
+        "PaperTrading",
+        "FinTech"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Unlocking Market Predictions with LSTM Networks",
+      "url": "/blog/2026-03-12-quantum-ai-trading-bots-unlocking-market-pre",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot experiments with LSTM networks for market prediction in paper trading. Educational guide to time series prediction, training strategies, and model evaluation",
+        "QuantumAI",
+        "LSTM",
+        "TradingBots",
+        "MarketPrediction",
+        "TimeSeriesAnalysis",
+        "MachineLearning",
+        "FinancialMarkets"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Time Series Forecasting with ARIMA, LSTM, and Transformers",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-time-series-forecast",
+      "date": "2026-01-29",
+      "keywords": [
+        "Time series forecasting experiments in Quantum AI Trading Bot paper trading. Comparative analysis of ARIMA, LSTM, Transformer models for market prediction research",
+        "QuantumAI",
+        "TimeSeriesForecasting",
+        "ARIMA",
+        "LSTM",
+        "Transformers",
+        "TradingBots",
+        "MarketPrediction"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Technical Indicators vs. Machine Learning",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-technical-indicators",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot comparison of traditional technical indicators vs pure ML approaches in paper trading. Research findings on when each performs better",
+        "quantumcomputing",
+        "AItrading",
+        "machinelearning",
+        "tradingbots",
+        "fintech",
+        "technicalanalysis",
+        "financialmarkets"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Reinforcement Learning in Action",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-reinforcement-learni",
+      "date": "2026-01-29",
+      "keywords": [
+        "Reinforcement learning experiments in Quantum AI Trading Bot paper trading research. Technical exploration of RL for portfolio optimization and strategy discovery",
+        "QuantumComputing",
+        "ReinforcementLearning",
+        "TradingBots",
+        "AIinFinance",
+        "PortfolioOptimization",
+        "AlgorithmicTrading",
+        "FinancialTechnology"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Real-Time vs. Batch Processing",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-real-time-vs-batch-p",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot architecture trade-offs between real-time and batch ML processing in paper trading. Latency, accuracy, and computational cost considerations for research",
+        "quantumcomputing",
+        "AI",
+        "tradingbots",
+        "realtimeprocessing",
+        "batchprocessing",
+        "machinelearning",
+        "financialmarkets"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Mastering Ensemble ML with LSTM and Boosting",
+      "url": "/blog/2026-02-26-quantum-ai-trading-bots-mastering-ensemble-m",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot uses ensemble ML (LSTM, gradient boosting) in paper trading. Technical guide to combining models, weighting strategies, and validation in research environment",
+        "QuantumAI",
+        "TradingBots",
+        "MachineLearning",
+        "LSTM",
+        "GradientBoosting",
+        "FinancialMarkets",
+        "AITrading",
+        "EnsembleLearning"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Insights from Monitoring 289 Symbols",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-insights-from-monito",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot insights from monitoring 289 symbols in paper trading. Lessons about market behavior, model performance variation, and research discoveries",
+        "quantumcomputing",
+        "AItading",
+        "financialmarkets",
+        "algorithmictrading",
+        "innovation",
+        "technology",
+        "investing"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Harnessing Alternative Data",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-harnessing-alternati",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot experiments with alternative data in paper trading research. Evaluating sentiment, satellite, web scraping, and other non-traditional data sources",
+        "QuantumAI",
+        "TradingBots",
+        "AlternativeData",
+        "SentimentAnalysis",
+        "SatelliteData",
+        "WebScraping",
+        "FinTech",
+        "QuantumComputing"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: Democratizing Quantitative Finance",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-democratizing-quanti",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot aims to democratize institutional quant methods through education and open tools. Making sophisticated ML techniques accessible for individual learning and research",
+        "quantumcomputing",
+        "AItrading",
+        "machinelearning",
+        "quantfinance",
+        "tradingbots",
+        "algorithmictrading",
+        "fintech",
+        "education"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bots: A Responsible Development Framework",
+      "url": "/blog/2026-01-29-title-quantum-ai-trading-bots-a-responsible-develo",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot educational framework for responsible algorithmic trading development. Ethics, risk awareness, paper trading first, and avoiding common pitfalls",
+        "quantumcomputing",
+        "algorithmictrading",
+        "ethicaltrading",
+        "aitrading",
+        "fintech",
+        "tradingstrategy",
+        "riskmanagement"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bot: Mastering Risk Management in Paper Trading",
+      "url": "/blog/2026-03-05-quantum-ai-trading-bot-mastering-risk-manage",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot emphasizes risk management in paper trading research. Framework covering position sizing, stop losses, portfolio constraints, and responsible experimentation",
+        "QuantumAI",
+        "TradingBots",
+        "RiskManagement",
+        "PaperTrading",
+        "FinancialMarkets",
+        "AlgorithmicTrading",
+        "InvestmentStrategies"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bot: Mastering Position Sizing",
+      "url": "/blog/2026-01-29-quantum-ai-trading-bot-mastering-position-sizing",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot position sizing research using Kelly Criterion, volatility targeting, and other risk-adjusted methods in paper trading for educational exploration",
+        "QuantumAI",
+        "TradingBots",
+        "PositionSizing",
+        "KellyCriterion",
+        "VolatilityTargeting",
+        "PaperTrading",
+        "RiskManagement"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bot: Mastering Market Regime Detection",
+      "url": "/blog/2026-01-29-quantum-ai-trading-bot-mastering-market-regime-det",
+      "date": "2026-01-29",
+      "keywords": [
+        "Quantum AI Trading Bot market regime detection in paper trading research. ML approaches to identifying bull/bear/sideways markets and adapting strategies accordingly",
+        "quantumcomputing",
+        "AItrading",
+        "machinelearning",
+        "marketregimes",
+        "tradingbots",
+        "fintech",
+        "quantfinance",
+        "papertrading"
+      ]
+    },
+    {
+      "title": "Quantum AI Trading Bot: Mastering Data Integration for Paper Trading",
+      "url": "/blog/2026-01-29-quantum-ai-trading-bot-mastering-data-integration-",
+      "date": "2026-01-29",
+      "keywords": [
+        "Data integration in Quantum AI Trading Bot paper trading research. Working with market data, alternative data, and ensuring quality for ML model training and validation",
+        "quantumcomputing",
+        "Aitrading",
+        "dataintegration",
+        "machinelearning",
+        "financialmarkets",
+        "alternativeData",
+        "tradingbots"
+      ]
+    }
+  ],
+  "ecosystem": [
+    {
+      "name": "Lawkraft",
+      "url": "https://lawkraft.com",
+      "role": "AI Consulting"
+    },
+    {
+      "name": "Mother AI OS",
+      "url": "https://mother-ai-os.github.io/mother/",
+      "role": "Agent Platform"
+    },
+    {
+      "name": "UAPK Gateway",
+      "url": "https://uapk.info",
+      "role": "AI Governance"
+    }
+  ]
+}
