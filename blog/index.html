@@ -6,333 +6,421 @@
     <meta name="description" content="Blog posts about Quantum AI Trading Bot development, trading strategies, machine learning, and automation insights.">
     <meta name="keywords" content="trading blog, AI trading, machine learning, quantum trading, algorithmic trading blog">
     <title>Blog - Quantum AI Trading Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2035;
+            --bg-card-hover: #1f2847;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-accent: rgba(99, 179, 237, 0.25);
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #63b3ed;
+            --accent-dim: rgba(99, 179, 237, 0.12);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 24px;
         }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 24px;
         }
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-        .nav {
-            text-align: center;
-            padding: 20px;
-        }
-        .nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .nav a:hover {
-            text-decoration: underline;
-            opacity: 0.8;
-        }
-        .blog-container {
-            background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        .blog-header {
-            margin-bottom: 40px;
-        }
-        .blog-header h2 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        .blog-header p {
-            color: #666;
-            font-size: 1.1em;
-        }
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .post-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        .post-card h3 {
-            font-size: 1.5em;
-            color: #667eea;
-            margin-bottom: 15px;
-        }
-        .post-meta {
-            color: #888;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-        .post-excerpt {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .read-more {
-            color: #667eea;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .post-tags {
-            margin-top: 15px;
+        nav .nav-inner {
+            max-width: 1140px;
+            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
         }
-        .tag {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            padding: 5px 12px;
-            border-radius: 20px;
+        nav .logo {
+            font-weight: 600;
+            font-size: 0.95em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        nav .logo span { color: var(--accent); }
+        nav .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        nav .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
             font-size: 0.85em;
             font-weight: 500;
+            transition: color 0.2s;
         }
-        footer {
+        nav .nav-links a:hover { color: var(--text-primary); }
+
+        header {
             text-align: center;
-            padding: 40px 20px;
-            color: white;
+            padding: 80px 0 48px;
         }
+        header h1 {
+            font-size: 2.4em;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+        header p {
+            color: var(--text-secondary);
+            font-size: 1em;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+            padding-bottom: 64px;
+        }
+        .post-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 28px;
+            transition: border-color 0.2s, background 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .post-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+        .post-card h3 {
+            font-size: 1.08em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .post-meta {
+            color: var(--text-muted);
+            font-size: 0.82em;
+            margin-bottom: 12px;
+        }
+        .post-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .read-more {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.85em;
+        }
+        .post-tags {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .tag {
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .cta-banner {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .cta-banner h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .cta-banner p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.92em;
+        }
+        .cta-banner a.btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88em;
+            transition: background 0.2s;
+        }
+        .cta-banner a.btn:hover { background: #7cc4f0; }
+
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 40px 0;
+            text-align: center;
+        }
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.82em;
+            line-height: 2;
+        }
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer a:hover { color: var(--text-primary); }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .footer-links a { font-size: 0.82em; font-weight: 500; }
+
         @media (max-width: 768px) {
-            header h1 { font-size: 2em; }
+            header h1 { font-size: 1.8em; }
             .posts-grid { grid-template-columns: 1fr; }
-            .blog-container { padding: 30px 20px; }
+            nav .nav-links { gap: 16px; }
+        }
+        @media (max-width: 480px) {
+            nav .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Blog</h1>
-            <p>Insights, updates, and tutorials from the Quantum AI Trading Bot development journey</p>
-        </div>
-    </header>
 
-    <div class="nav">
-        <a href="../index.html">&larr; Back to Home</a>
-    </div>
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="logo"><span>Q</span> Quantum AI Trading</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html">Blog</a></li>
+                <li><a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
-        <div class="blog-container">
-            <div class="blog-header">
-                <h2>Latest Posts</h2>
-                <p>Learn about trading strategies, machine learning techniques, and system architecture</p>
-            </div>
+        <header>
+            <h1>Blog</h1>
+            <p>Insights, updates, and tutorials from the Quantum AI Trading Bot development journey</p>
+        </header>
 
-            <div class="posts-grid">
+        <div class="posts-grid">
 
-                <a href="posts/architecting-my-paper-trading-system-from-data-pipelines-to-predictions.html" class="post-card">
-                    <h3>Architecting My Paper Trading System: From Data Pipelines to Predictions</h3>
-                    <div class="post-meta">March 13, 2026 &bull; 5 min read</div>
-                    <p class="post-excerpt">This week I tested a new approach to my paper trading system, focusing on building a robust data pipeline for 289 symbols and implementing real-time feature extraction.</p>
-                    <div class="post-tags">
-                        <span class="tag">Trading</span>
-                        <span class="tag">Architecture</span>
-                        <span class="tag">Data Science</span>
-                        <span class="tag">Machine Learning</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/architecting-my-paper-trading-system-from-data-pipelines-to-predictions.html" class="post-card">
+                <h3>Architecting My Paper Trading System: From Data Pipelines to Predictions</h3>
+                <div class="post-meta">March 13, 2026 &bull; 5 min read</div>
+                <p class="post-excerpt">This week I tested a new approach to my paper trading system, focusing on building a robust data pipeline for 289 symbols and implementing real-time feature extraction.</p>
+                <div class="post-tags">
+                    <span class="tag">Trading</span>
+                    <span class="tag">Architecture</span>
+                    <span class="tag">Data Science</span>
+                    <span class="tag">Machine Learning</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/why-i-started-building-a-trading-bot-and-what-i-actually-hope-to-learn.html" class="post-card">
-                    <h3>Why I Started Building a Trading Bot (And What I Actually Hope to Learn)</h3>
-                    <div class="post-meta">March 13, 2026 &bull; 5 min read</div>
-                    <p class="post-excerpt">Exploring the personal motivations and learning potential of building an AI trading bot, from bridging theory to practice in automated financial strategies.</p>
-                    <div class="post-tags">
-                        <span class="tag">Trading Bot</span>
-                        <span class="tag">Fintech</span>
-                        <span class="tag">Algorithmic Trading</span>
-                        <span class="tag">Machine Learning</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/why-i-started-building-a-trading-bot-and-what-i-actually-hope-to-learn.html" class="post-card">
+                <h3>Why I Started Building a Trading Bot (And What I Actually Hope to Learn)</h3>
+                <div class="post-meta">March 13, 2026 &bull; 5 min read</div>
+                <p class="post-excerpt">Exploring the personal motivations and learning potential of building an AI trading bot, from bridging theory to practice in automated financial strategies.</p>
+                <div class="post-tags">
+                    <span class="tag">Trading Bot</span>
+                    <span class="tag">Fintech</span>
+                    <span class="tag">Algorithmic Trading</span>
+                    <span class="tag">Machine Learning</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/quantum-ai-trading-bots-unlocking-market-predictions-with-lstm-networks.html" class="post-card">
-                    <h3>Quantum AI Trading Bots: Unlocking Market Predictions with LSTM Networks</h3>
-                    <div class="post-meta">March 12, 2026 &bull; 7 min read</div>
-                    <p class="post-excerpt">Testing an LSTM network to predict market directions with a dataset of 289 symbols, using real-time features to see if the model could provide actionable insights in paper trading.</p>
-                    <div class="post-tags">
-                        <span class="tag">LSTM</span>
-                        <span class="tag">Market Prediction</span>
-                        <span class="tag">Time Series</span>
-                        <span class="tag">Machine Learning</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/quantum-ai-trading-bots-unlocking-market-predictions-with-lstm-networks.html" class="post-card">
+                <h3>Quantum AI Trading Bots: Unlocking Market Predictions with LSTM Networks</h3>
+                <div class="post-meta">March 12, 2026 &bull; 7 min read</div>
+                <p class="post-excerpt">Testing an LSTM network to predict market directions with a dataset of 289 symbols, using real-time features to see if the model could provide actionable insights in paper trading.</p>
+                <div class="post-tags">
+                    <span class="tag">LSTM</span>
+                    <span class="tag">Market Prediction</span>
+                    <span class="tag">Time Series</span>
+                    <span class="tag">Machine Learning</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/quantum-ai-trading-bot-mastering-risk-management-in-paper-trading.html" class="post-card">
-                    <h3>Quantum AI Trading Bot: Mastering Risk Management in Paper Trading</h3>
-                    <div class="post-meta">March 5, 2026 &bull; 8 min read</div>
-                    <p class="post-excerpt">Diving into market volatility with a new paper trading experiment focused on mastering risk management, optimizing stop-loss settings, and dynamic position sizing.</p>
-                    <div class="post-tags">
-                        <span class="tag">Risk Management</span>
-                        <span class="tag">Paper Trading</span>
-                        <span class="tag">Algorithmic Trading</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/quantum-ai-trading-bot-mastering-risk-management-in-paper-trading.html" class="post-card">
+                <h3>Quantum AI Trading Bot: Mastering Risk Management in Paper Trading</h3>
+                <div class="post-meta">March 5, 2026 &bull; 8 min read</div>
+                <p class="post-excerpt">Diving into market volatility with a new paper trading experiment focused on mastering risk management, optimizing stop-loss settings, and dynamic position sizing.</p>
+                <div class="post-tags">
+                    <span class="tag">Risk Management</span>
+                    <span class="tag">Paper Trading</span>
+                    <span class="tag">Algorithmic Trading</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/quantum-ai-trading-bots-mastering-ensemble-ml-with-lstm-and-boosting.html" class="post-card">
-                    <h3>Quantum AI Trading Bots: Mastering Ensemble ML with LSTM and Boosting</h3>
-                    <div class="post-meta">February 26, 2026 &bull; 9 min read</div>
-                    <p class="post-excerpt">Exploring ensemble machine learning with LSTM and gradient boosting techniques to improve predictive accuracy in paper trading experiments.</p>
-                    <div class="post-tags">
-                        <span class="tag">Ensemble ML</span>
-                        <span class="tag">LSTM</span>
-                        <span class="tag">Gradient Boosting</span>
-                        <span class="tag">AI Trading</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/quantum-ai-trading-bots-mastering-ensemble-ml-with-lstm-and-boosting.html" class="post-card">
+                <h3>Quantum AI Trading Bots: Mastering Ensemble ML with LSTM and Boosting</h3>
+                <div class="post-meta">February 26, 2026 &bull; 9 min read</div>
+                <p class="post-excerpt">Exploring ensemble machine learning with LSTM and gradient boosting techniques to improve predictive accuracy in paper trading experiments.</p>
+                <div class="post-tags">
+                    <span class="tag">Ensemble ML</span>
+                    <span class="tag">LSTM</span>
+                    <span class="tag">Gradient Boosting</span>
+                    <span class="tag">AI Trading</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/quantum-ai-trading-bot-a-paper-trading-revolution.html" class="post-card">
-                    <h3>Quantum AI Trading Bot: A Paper Trading Revolution</h3>
-                    <div class="post-meta">February 19, 2026 &bull; 7 min read</div>
-                    <p class="post-excerpt">Testing a reinforcement learning model to navigate stock market fluctuations in a paper trading environment, exploring responsible AI-driven trading strategies.</p>
-                    <div class="post-tags">
-                        <span class="tag">Quantum AI</span>
-                        <span class="tag">Paper Trading</span>
-                        <span class="tag">Ethical AI</span>
-                        <span class="tag">Machine Learning</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/quantum-ai-trading-bot-a-paper-trading-revolution.html" class="post-card">
+                <h3>Quantum AI Trading Bot: A Paper Trading Revolution</h3>
+                <div class="post-meta">February 19, 2026 &bull; 7 min read</div>
+                <p class="post-excerpt">Testing a reinforcement learning model to navigate stock market fluctuations in a paper trading environment, exploring responsible AI-driven trading strategies.</p>
+                <div class="post-tags">
+                    <span class="tag">Quantum AI</span>
+                    <span class="tag">Paper Trading</span>
+                    <span class="tag">Ethical AI</span>
+                    <span class="tag">Machine Learning</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="2026-01-28-quantum-enhancements-deployed.html" class="post-card">
-                    <h3>Quantum Enhancements Deployed</h3>
-                    <div class="post-meta">January 28, 2026 &bull; 12 min read</div>
-                    <p class="post-excerpt">Full quantum stack deployed with 7 quantum algorithms (Grover, QAOA, VQE, QFT), 50+ quantum features, and expected 10-97% accuracy improvements over classical methods.</p>
-                    <div class="post-tags">
-                        <span class="tag">Quantum</span>
-                        <span class="tag">Algorithms</span>
-                        <span class="tag">Major Update</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="2026-01-28-quantum-enhancements-deployed.html" class="post-card">
+                <h3>Quantum Enhancements Deployed</h3>
+                <div class="post-meta">January 28, 2026 &bull; 12 min read</div>
+                <p class="post-excerpt">Full quantum stack deployed with 7 quantum algorithms (Grover, QAOA, VQE, QFT), 50+ quantum features, and expected 10-97% accuracy improvements over classical methods.</p>
+                <div class="post-tags">
+                    <span class="tag">Quantum</span>
+                    <span class="tag">Algorithms</span>
+                    <span class="tag">Major Update</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/launch-announcement.html" class="post-card">
-                    <h3>Launching Quantum AI Trading Bot</h3>
-                    <div class="post-meta">January 28, 2026 &bull; 5 min read</div>
-                    <p class="post-excerpt">Announcing the public launch of Quantum AI Trading Bot — an advanced AI-powered paper trading system with multi-source data integration.</p>
-                    <div class="post-tags">
-                        <span class="tag">Announcement</span>
-                        <span class="tag">Launch</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/launch-announcement.html" class="post-card">
+                <h3>Launching Quantum AI Trading Bot</h3>
+                <div class="post-meta">January 28, 2026 &bull; 5 min read</div>
+                <p class="post-excerpt">Announcing the public launch of Quantum AI Trading Bot - an advanced AI-powered paper trading system with multi-source data integration.</p>
+                <div class="post-tags">
+                    <span class="tag">Announcement</span>
+                    <span class="tag">Launch</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/multi-source-data-integration-building-a-unified-trading-pipeline.html" class="post-card">
-                    <h3>Multi-Source Data Integration: Building a Unified Trading Pipeline</h3>
-                    <div class="post-meta">January 27, 2026 &bull; 8 min read</div>
-                    <p class="post-excerpt">How I built a unified data pipeline that integrates six different market data sources into a single, coherent stream for the Quantum AI Trading Bot's paper trading experiments.</p>
-                    <div class="post-tags">
-                        <span class="tag">Data Integration</span>
-                        <span class="tag">Trading Pipeline</span>
-                        <span class="tag">API Architecture</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/multi-source-data-integration-building-a-unified-trading-pipeline.html" class="post-card">
+                <h3>Multi-Source Data Integration: Building a Unified Trading Pipeline</h3>
+                <div class="post-meta">January 27, 2026 &bull; 8 min read</div>
+                <p class="post-excerpt">How I built a unified data pipeline that integrates six different market data sources into a single, coherent stream for the Quantum AI Trading Bot's paper trading experiments.</p>
+                <div class="post-tags">
+                    <span class="tag">Data Integration</span>
+                    <span class="tag">Trading Pipeline</span>
+                    <span class="tag">API Architecture</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/risk-management-and-safety-guardrails-in-paper-trading.html" class="post-card">
-                    <h3>Risk Management and Safety Guardrails in Paper Trading</h3>
-                    <div class="post-meta">January 26, 2026 &bull; 7 min read</div>
-                    <p class="post-excerpt">Building institutional-grade risk management into a paper trading bot — because responsible AI means treating simulated capital with the same discipline as real capital.</p>
-                    <div class="post-tags">
-                        <span class="tag">Risk Management</span>
-                        <span class="tag">Safety</span>
-                        <span class="tag">Paper Trading</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/risk-management-and-safety-guardrails-in-paper-trading.html" class="post-card">
+                <h3>Risk Management and Safety Guardrails in Paper Trading</h3>
+                <div class="post-meta">January 26, 2026 &bull; 7 min read</div>
+                <p class="post-excerpt">Building institutional-grade risk management into a paper trading bot - because responsible AI means treating simulated capital with the same discipline as real capital.</p>
+                <div class="post-tags">
+                    <span class="tag">Risk Management</span>
+                    <span class="tag">Safety</span>
+                    <span class="tag">Paper Trading</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/building-the-machine-learning-pipeline-for-algorithmic-trading.html" class="post-card">
-                    <h3>Building the Machine Learning Pipeline for Algorithmic Trading</h3>
-                    <div class="post-meta">January 25, 2026 &bull; 10 min read</div>
-                    <p class="post-excerpt">A deep dive into the ML pipeline powering the Quantum AI Trading Bot — from feature engineering through model training to paper trading inference.</p>
-                    <div class="post-tags">
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag">Tutorial</span>
-                        <span class="tag">Python</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/building-the-machine-learning-pipeline-for-algorithmic-trading.html" class="post-card">
+                <h3>Building the Machine Learning Pipeline for Algorithmic Trading</h3>
+                <div class="post-meta">January 25, 2026 &bull; 10 min read</div>
+                <p class="post-excerpt">A deep dive into the ML pipeline powering the Quantum AI Trading Bot - from feature engineering through model training to paper trading inference.</p>
+                <div class="post-tags">
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Tutorial</span>
+                    <span class="tag">Python</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/backtesting-framework-validating-trading-strategies-against-history.html" class="post-card">
-                    <h3>Backtesting Framework: Validating Trading Strategies Against History</h3>
-                    <div class="post-meta">January 24, 2026 &bull; 7 min read</div>
-                    <p class="post-excerpt">Building a backtesting framework that honestly evaluates trading strategies — including the pitfalls that make most backtests dangerously misleading.</p>
-                    <div class="post-tags">
-                        <span class="tag">Backtesting</span>
-                        <span class="tag">Performance</span>
-                        <span class="tag">Quantitative Finance</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/backtesting-framework-validating-trading-strategies-against-history.html" class="post-card">
+                <h3>Backtesting Framework: Validating Trading Strategies Against History</h3>
+                <div class="post-meta">January 24, 2026 &bull; 7 min read</div>
+                <p class="post-excerpt">Building a backtesting framework that honestly evaluates trading strategies - including the pitfalls that make most backtests dangerously misleading.</p>
+                <div class="post-tags">
+                    <span class="tag">Backtesting</span>
+                    <span class="tag">Performance</span>
+                    <span class="tag">Quantitative Finance</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-                <a href="posts/automating-the-trading-infrastructure-with-interactive-brokers-gateway.html" class="post-card">
-                    <h3>Automating the Trading Infrastructure with Interactive Brokers Gateway</h3>
-                    <div class="post-meta">January 23, 2026 &bull; 9 min read</div>
-                    <p class="post-excerpt">How I built a resilient 24/7 paper trading infrastructure with automatic recovery, health monitoring, and zero-downtime deployments.</p>
-                    <div class="post-tags">
-                        <span class="tag">Infrastructure</span>
-                        <span class="tag">Automation</span>
-                        <span class="tag">DevOps</span>
-                    </div>
-                    <div class="read-more">Read More &rarr;</div>
-                </a>
+            <a href="posts/automating-the-trading-infrastructure-with-interactive-brokers-gateway.html" class="post-card">
+                <h3>Automating the Trading Infrastructure with Interactive Brokers Gateway</h3>
+                <div class="post-meta">January 23, 2026 &bull; 9 min read</div>
+                <p class="post-excerpt">How I built a resilient 24/7 paper trading infrastructure with automatic recovery, health monitoring, and zero-downtime deployments.</p>
+                <div class="post-tags">
+                    <span class="tag">Infrastructure</span>
+                    <span class="tag">Automation</span>
+                    <span class="tag">DevOps</span>
+                </div>
+                <div class="read-more">Read more &rarr;</div>
+            </a>
 
-            </div>
+        </div>
 
-            <div style="margin-top: 60px; padding: 30px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; text-align: center;">
-                <h3 style="color: #667eea; margin-bottom: 15px;">Stay Updated</h3>
-                <p style="color: #666; margin-bottom: 20px;">Follow our development journey on GitHub for the latest updates and features</p>
-                <a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot" style="display: inline-block; padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all 0.3s ease;">Star on GitHub</a>
-            </div>
+        <div class="cta-banner">
+            <h3>Stay Updated</h3>
+            <p>Follow the development journey on GitHub for the latest updates and features</p>
+            <a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot" class="btn">Star on GitHub</a>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Quantum AI Trading Bot. All rights reserved.</p>
-            <p>
-                <a href="../index.html" style="color: white;">Home</a> |
-<a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot" style="color: white;">GitHub</a> |
-                <a href="https://lawkraft.com" style="color: white;">Lawkraft</a> |
-                <a href="https://uapk.info" style="color: white;">UAPK Gateway</a> |
-                <a href="https://mother-os.info" style="color: white;">Mother AI OS</a> |
-                <a href="https://morpheusmark.com" style="color: white;">Morpheus Mark</a> |
-                <a href="https://huckesanker.com" style="color: white;">Hucke &amp; Sanker</a> |
-                <a href="https://de.linkedin.com/in/sankerlaw" style="color: white;">LinkedIn</a>
-            </p>
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="https://github.com/Quantum-AI-Trading-Bot/quantum-trading-bot">GitHub</a>
+                <a href="https://lawkraft.com">Lawkraft</a>
+                <a href="https://uapk.info">UAPK Gateway</a>
+                <a href="https://mother-os.info">Mother AI OS</a>
+                <a href="https://morpheusmark.com">Morpheus Mark</a>
+                <a href="https://huckesanker.com">Hucke &amp; Sanker</a>
+                <a href="https://de.linkedin.com/in/sankerlaw">LinkedIn</a>
+            </div>
+            <p>&copy; 2026 Quantum AI Trading Bot</p>
         </div>
     </footer>
 </body>
