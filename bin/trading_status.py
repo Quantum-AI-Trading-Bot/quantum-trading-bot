@@ -1,0 +1,396 @@
+#!/usr/bin/env python3
+"""
+Trading Status Command - One-Screen Dashboard
+
+Shows all critical system state in a single screen view:
+- Safety gates status
+- Execution authority status
+- Whitelist profile
+- Risk limits
+- IB Gateway status
+- Recent receipts
+- System services
+- EMERGENCY_STOP status
+
+Usage: bin/trading_status.py
+
+Author: Autonomous Trading System
+Date: 2026-01-24
+"""
+
+import os
+import sys
+import json
+import subprocess
+from pathlib import Path
+from datetime import datetime, timedelta
+from typing import Dict, List
+
+# Add platform to path
+PLATFORM_ROOT = Path("/home/davidsanker/platform")
+sys.path.insert(0, str(PLATFORM_ROOT))
+
+# Color codes for terminal output
+class Colors:
+    GREEN = '\033[92m'
+    RED = '\033[91m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    BOLD = '\033[1m'
+    RESET = '\033[0m'
+
+
+def print_header(title: str):
+    """Print section header."""
+    print(f"\n{Colors.BLUE}{Colors.BOLD}{'═' * 80}")
+    print(f"{title.center(80)}")
+    print(f"{'═' * 80}{Colors.RESET}")
+
+
+def print_status(label: str, value: str, status: str = "OK"):
+    """Print status line with color coding."""
+    if status == "OK":
+        icon = f"{Colors.GREEN}✓{Colors.RESET}"
+    elif status == "WARN":
+        icon = f"{Colors.YELLOW}⚠{Colors.RESET}"
+    elif status == "ERROR":
+        icon = f"{Colors.RED}✗{Colors.RESET}"
+    else:
+        icon = "•"
+
+    print(f"  {icon} {label}: {value}")
+
+
+def check_emergency_stop() -> Dict:
+    """Check EMERGENCY_STOP status."""
+    emergency_file = PLATFORM_ROOT / "EMERGENCY_STOP"
+
+    if emergency_file.exists():
+        return {
+            'status': 'EMERGENCY_STOP_ACTIVE',
+            'icon': '🚨',
+            'message': 'EMERGENCY STOP FILE EXISTS - ALL TRADING HALTED',
+            'color': Colors.RED
+        }
+    else:
+        return {
+            'status': 'OK',
+            'icon': '✓',
+            'message': 'No emergency stop - trading allowed',
+            'color': Colors.GREEN
+        }
+
+
+def check_execution_authority() -> Dict:
+    """Check execution authority status."""
+    try:
+        from engine.execution_authority import ExecutionAuthority
+
+        auth = ExecutionAuthority()
+        result = auth.check()
+
+        if result['allowed']:
+            return {
+                'status': 'OK',
+                'message': f"Authority permitted (stamp: {result.get('authority_stamp', 'N/A')[:16]}...)",
+                'details': result
+            }
+        else:
+            # Use reason_code first, then fall back to reason field, then UNKNOWN
+            reason = result.get('reason_code') or result.get('reason') or 'UNKNOWN'
+            return {
+                'status': 'BLOCKED',
+                'message': f"Authority blocked: {reason}",
+                'details': result
+            }
+    except Exception as e:
+        return {
+            'status': 'ERROR',
+            'message': f"Error: {e}",
+            'error': str(e)
+        }
+
+
+def check_whitelist() -> Dict:
+    """Check whitelist profile."""
+    try:
+        from engine.whitelist import WhitelistManager
+
+        whitelist = WhitelistManager()
+
+        return {
+            'status': 'OK',
+            'profile': whitelist.profile_name,
+            'asset_classes': whitelist.profile.get('asset_classes', []),
+            'symbols_count': len(whitelist.profile.get('symbols', [])),
+            'message': f"Profile: {whitelist.profile_name} ({len(whitelist.profile.get('symbols', []))} symbols)"
+        }
+    except Exception as e:
+        return {
+            'status': 'ERROR',
+            'message': f"Error: {e}",
+            'error': str(e)
+        }
+
+
+def check_risk_manager() -> Dict:
+    """Check risk manager state."""
+    try:
+        from engine.risk_manager import PortfolioRiskManager
+
+        risk_mgr = PortfolioRiskManager()
+
+        return {
+            'status': 'OK',
+            'config': {
+                'max_gross_exposure': risk_mgr.config.get('max_gross_exposure_usd'),
+                'max_net_exposure': risk_mgr.config.get('max_net_exposure_usd'),
+                'max_daily_loss': risk_mgr.config.get('max_daily_loss_usd'),
+            },
+            'state': {
+                'rolling_equity_peak': risk_mgr.state.get('rolling_equity_peak'),
+                'orders_today': risk_mgr.state.get('orders_today'),
+                'daily_loss': risk_mgr.state.get('daily_loss_usd'),
+            },
+            'message': f"Peak equity: ${risk_mgr.state.get('rolling_equity_peak', 0):,.0f}, Orders today: {risk_mgr.state.get('orders_today', 0)}"
+        }
+    except Exception as e:
+        return {
+            'status': 'ERROR',
+            'message': f"Error: {e}",
+            'error': str(e)
+        }
+
+
+def check_ib_gateway() -> Dict:
+    """Check IB Gateway status."""
+    try:
+        # Check if process is running
+        result = subprocess.run(
+            ['pgrep', '-f', 'ibgateway'],
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode == 0:
+            # Check if port 4002 is listening
+            result2 = subprocess.run(
+                ['bash', '-c', "ss -ltnp 2>/dev/null | grep ':4002'"],
+                capture_output=True,
+                text=True
+            )
+
+            if result2.returncode == 0:
+                return {
+                    'status': 'OK',
+                    'message': 'IB Gateway running and listening on port 4002'
+                }
+            else:
+                return {
+                    'status': 'WARN',
+                    'message': 'IB Gateway process running but port 4002 not listening'
+                }
+        else:
+            return {
+                'status': 'ERROR',
+                'message': 'IB Gateway not running'
+            }
+    except Exception as e:
+        return {
+            'status': 'ERROR',
+            'message': f"Error: {e}",
+            'error': str(e)
+        }
+
+
+def get_recent_receipts(count: int = 5) -> List[Dict]:
+    """Get recent execution receipts."""
+    receipts_dir = PLATFORM_ROOT / "execution_receipts"
+
+    if not receipts_dir.exists():
+        return []
+
+    receipts = []
+    for receipt_file in sorted(receipts_dir.glob("*.json"), reverse=True)[:count]:
+        try:
+            with open(receipt_file, 'r') as f:
+                receipt = json.load(f)
+                receipts.append({
+                    'file': receipt_file.name,
+                    'timestamp': receipt.get('timestamp'),
+                    'symbol': receipt.get('intent', {}).get('symbol'),
+                    'action': receipt.get('intent', {}).get('action'),
+                    'status': receipt.get('order_result', {}).get('status', 'UNKNOWN'),
+                    'reason': receipt.get('guardrail_result', {}).get('reason', ''),
+                })
+        except Exception as e:
+            pass
+
+    return receipts
+
+
+def check_systemd_services() -> Dict:
+    """Check systemd service status."""
+    services = [
+        'trading-paper-production.service',
+        'trading-watchdog.service',
+        'trading-reconcile.service',
+    ]
+
+    status = {}
+    for service in services:
+        try:
+            result = subprocess.run(
+                ['systemctl', 'is-active', '--user', service],
+                capture_output=True,
+                text=True
+            )
+            status[service] = {
+                'active': result.stdout.strip(),
+                'enabled': 'unknown'
+            }
+        except Exception as e:
+            status[service] = {'error': str(e)}
+
+    return status
+
+
+def show_full_status():
+    """Show full trading status dashboard."""
+    print(f"\n{Colors.BOLD}QUANTUM AI TRADING BOT - AUTONOMOUS PAPER TRADING STATUS{Colors.RESET}")
+    print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S %Z')}")
+    print(f"Branch: autonomous-paper-exec-authority-20260126")
+
+    # Emergency Stop Check
+    print_header("🚨 EMERGENCY STOP STATUS")
+    emergency = check_emergency_stop()
+    print(f"  {emergency['icon']} {emergency['message']}")
+
+    # Safety Gates
+    print_header("🔒 SAFETY GATES")
+
+    authority = check_execution_authority()
+    print_status("Execution Authority", authority['message'], authority['status'])
+
+    whitelist = check_whitelist()
+    print_status("Whitelist Profile", whitelist.get('message', 'Error'), whitelist['status'])
+
+    risk = check_risk_manager()
+    print_status("Risk Manager", risk['message'], risk['status'])
+
+    # IB Gateway
+    print_header("🔌 IB GATEWAY STATUS")
+    ib = check_ib_gateway()
+    print_status("IB Gateway", ib['message'], ib['status'])
+
+    # Risk Limits
+    if risk['status'] == 'OK':
+        print(f"\n  Current Risk State:")
+        print(f"    Rolling equity peak: ${risk['state']['rolling_equity_peak']:,.2f}")
+        print(f"    Orders today: {risk['state']['orders_today']}")
+        print(f"    Daily loss: ${risk['state']['daily_loss']:,.2f}")
+
+        print(f"\n  Risk Limits:")
+        config = risk['config']
+        print(f"    Max gross exposure: ${config['max_gross_exposure']:,}")
+        print(f"    Max net exposure: ${config['max_net_exposure']:,}")
+        print(f"    Max daily loss: ${config['max_daily_loss']:,}")
+
+    # Whitelist Details
+    if whitelist['status'] == 'OK':
+        print(f"\n  Whitelist Details:")
+        print(f"    Profile: {whitelist['profile']}")
+        print(f"    Asset classes: {', '.join(whitelist['asset_classes'])}")
+        print(f"    Symbols: {whitelist['symbols_count']}")
+
+    # Recent Receipts
+    print_header("📋 RECENT EXECUTION RECEIPTS")
+    receipts = get_recent_receipts(5)
+
+    if not receipts:
+        print("  No execution receipts found")
+    else:
+        for receipt in receipts:
+            timestamp = receipt.get('timestamp', 'N/A')
+            if timestamp != 'N/A':
+                dt = datetime.fromisoformat(timestamp)
+                time_str = dt.strftime('%H:%M:%S')
+            else:
+                time_str = 'N/A'
+
+            status_icon = "✓" if receipt['status'] in ['SUBMITTED', 'FILLED', 'WOULD_PLACE'] else "✗"
+            print(f"  {status_icon} {time_str} | {receipt['symbol']:6s} | {receipt['action']:4s} | {receipt['status']:20s}")
+
+    # System Services
+    print_header("⚙️ SYSTEMD SERVICES")
+    services = check_systemd_services()
+
+    for service_name, service_status in services.items():
+        if 'error' in service_status:
+            print_status(service_name, service_status['error'], 'ERROR')
+        else:
+            active = service_status['active']
+            status_level = 'OK' if active == 'active' else 'WARN'
+            print_status(service_name, f"Status: {active}", status_level)
+
+    # Footer
+    print_header("QUICK ACTIONS")
+    print("  bin/trading_status.py       - Show this status")
+    print("  bin/execution_watchdog.py   - Run health checks")
+    print("  bin/reconcile_broker_state.py - Reconcile broker state")
+    print("  rm EMERGENCY_STOP           - Clear emergency stop (if safe)")
+    print(f"\n{Colors.BLUE}Full logs: {PLATFORM_ROOT}/logs/{Colors.RESET}")
+    print(f"{Colors.BLUE}Receipts: {PLATFORM_ROOT}/execution_receipts/{Colors.RESET}")
+    print(f"{Colors.BLUE}State: {PLATFORM_ROOT}/state/{Colors.RESET}")
+
+
+def main():
+    """CLI entry point."""
+    import argparse
+
+    # Load environment variables from config file if not already set
+    # This ensures trading_status.py shows correct config values when run interactively
+    config_file = PLATFORM_ROOT / "config" / "quantum_runtime.env"
+    if config_file.exists() and 'QUANTUM_EXECUTION_DRY_RUN' not in os.environ:
+        try:
+            with open(config_file, 'r') as f:
+                for line in f:
+                    line = line.strip()
+                    # Skip comments and empty lines
+                    if not line or line.startswith('#'):
+                        continue
+                    # Parse KEY=VALUE
+                    if '=' in line:
+                        key, value = line.split('=', 1)
+                        key = key.strip()
+                        value = value.strip().split('#')[0].strip()  # Remove comments
+                        # Only set if not already in environment
+                        if key and key not in os.environ:
+                            os.environ[key] = value
+        except Exception as e:
+            # Non-fatal: continue without env loading
+            pass
+
+    parser = argparse.ArgumentParser(description='Trading Status Dashboard')
+    parser.add_argument('--compact', action='store_true', help='Compact output')
+    parser.add_argument('--watch', '-w', action='store_true', help='Watch mode (update every 5s)')
+    args = parser.parse_args()
+
+    if args.watch:
+        try:
+            import time
+            while True:
+                # Clear screen
+                print("\033[2J\033[H", end="")
+                show_full_status()
+                time.sleep(5)
+        except KeyboardInterrupt:
+            print(f"\n\n{Colors.YELLOW}Watch mode stopped{Colors.RESET}")
+            return 0
+    else:
+        show_full_status()
+        return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -20,7 +20,7 @@ class IBGatewayAutomator:
         self.vnc_port = "5901"
         self.credentials = {
             "username": "amakua444",
-            "password": "Twbb19874!"
+            "password": "YOUR_IB_PASSWORD"
         }
         self.max_attempts = 5
         self.attempt_count = 0

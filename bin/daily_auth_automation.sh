@@ -21,15 +21,11 @@ log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
 }
 
-# Send notification
+# Send notification (DISABLED - email automation turned off)
 send_notification() {
     local subject="$1"
     local message="$2"
-
-    if command -v mail >/dev/null 2>&1; then
-        echo "$message" | mail -s "$subject" "$NOTIFICATION_EMAIL"
-        log "📧 Notification sent: $subject"
-    fi
+    log "📧 [EMAIL DISABLED] Would have sent: $subject"
 }
 
 # Check IB Gateway status

@@ -26,7 +26,8 @@ log "=========================================="
 
 # 1. Environment checks
 log "[1/6] Checking environment..."
-test -n "${DISPLAY:-}" || die "DISPLAY not set"
+export DISPLAY="${DISPLAY:-:1}"
+log "   DISPLAY=${DISPLAY}"
 pgrep -x Xvfb > /dev/null || die "Xvfb not running on ${DISPLAY}"
 test -f ~/IBC/config.ini || die "IBC config missing"
 test -f ~/IBC/gatewaystart.sh || die "IBC gatewaystart.sh missing"
@@ -35,9 +36,9 @@ log "   ✓ Environment OK"
 
 # 2. Kill any existing Gateway processes
 log "[2/6] Cleaning up old processes..."
-if pgrep -f "java.*ibgateway" > /dev/null; then
+if pgrep -f "IbcGateway" > /dev/null; then
     log "   Found existing Gateway process, killing..."
-    pkill -f "java.*ibgateway" || true
+    pkill -f "IbcGateway" || true
     sleep 5
 fi
 log "   ✓ Cleanup complete"
@@ -79,7 +80,7 @@ fi
 # 6. API connectivity test
 log "[6/6] Testing API connectivity..."
 sleep 10  # Additional grace period for API initialization
-if timeout 10 python3 -c "
+if timeout 10 /home/davidsanker/venv/bin/python3 -c "
 from ib_insync import IB
 ib = IB()
 try:

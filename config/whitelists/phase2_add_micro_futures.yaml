@@ -1,0 +1,64 @@
+# Whitelist Profile: Phase 2 - Add Micro Futures
+# Adds micro futures with position limits
+
+profile_name: "phase2_add_micro_futures"
+phase: 2
+description: "Phase 1 + Micro futures (MES, MNQ) only"
+
+# Asset classes allowed
+asset_classes:
+  - STOCK
+  - ETF
+  - OPTION
+  - FUT
+
+# Symbols whitelist (Phase 1 + futures)
+symbols:
+  # Phase 1 symbols
+  - SPY
+  - QQQ
+  - IWM
+  - AAPL
+  - MSFT
+  - GOOGL
+  - AMZN
+  - TSLA
+  - NVDA
+
+  # Micro futures (from config/instruments.yaml)
+  - MES    # Micro E-mini S&P 500
+  - MNQ    # Micro E-mini Nasdaq-100
+
+# Order limits
+max_orders_per_day: 50
+max_position_usd_per_symbol: 75000
+max_order_notional_usd: 35000
+
+# Risk limits
+max_gross_exposure_usd: 250000
+max_net_exposure_usd: 150000
+
+# Futures-specific constraints
+futures:
+  allow_only_micro: true          # Only micro contracts
+  max_contracts_per_order: 1      # Conservative size
+  allowed_exchanges:
+    - CME                         # Chicago Mercantile Exchange
+  allowed_roots:
+    - MES                         # Micro S&P 500
+    - MNQ                         # Micro Nasdaq-100
+    - M2K                         # Micro Russell 2000 (future)
+    - MYM                         # Micro Dow Jones (future)
+
+# Notes
+notes: "Phase 2 - Adds micro futures (MES, MNQ) with conservative position sizes."
+readiness_date: "2026-01-24"
+target_live_date: "TBD"
+
+# Validation
+validated: true
+risk_level: "moderate"
+requires_futures_margin: true
+intraday_margin_required:
+  MES: 630   # Approximate per contract
+  MNQ: 500   # Approximate per contract

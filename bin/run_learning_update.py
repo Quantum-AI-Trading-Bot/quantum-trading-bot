@@ -105,10 +105,21 @@ def load_outcomes(
     # Filter by timestamp if provided
     if since_timestamp:
         since_dt = datetime.fromisoformat(since_timestamp)
-        outcomes = [
-            o for o in outcomes
-            if datetime.fromisoformat(o.get('label_time', o.get('timestamp', ''))) > since_dt
-        ]
+        # Normalize to offset-naive for comparison (some timestamps have tz, some don't)
+        if since_dt.tzinfo is not None:
+            since_dt = since_dt.replace(tzinfo=None)
+        filtered = []
+        for o in outcomes:
+            raw_ts = o.get('label_time', o.get('timestamp', ''))
+            try:
+                o_dt = datetime.fromisoformat(raw_ts)
+                if o_dt.tzinfo is not None:
+                    o_dt = o_dt.replace(tzinfo=None)
+                if o_dt > since_dt:
+                    filtered.append(o)
+            except (ValueError, TypeError):
+                continue
+        outcomes = filtered
 
     return outcomes
 

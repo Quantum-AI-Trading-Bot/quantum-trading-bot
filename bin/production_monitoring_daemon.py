@@ -66,6 +66,7 @@ class ProductionMonitoringDaemon:
         config_file = '/home/davidsanker/platform/config/monitoring_config.json'
 
         default_config = AlertConfig(
+            email_enabled=False,
             email_recipients=['david@sanker.at', 'miriam.sanker@gmail.com']
         )
 
@@ -90,6 +91,10 @@ class ProductionMonitoringDaemon:
 
     def send_email_alert(self, subject: str, message: str):
         """Send email alert (placeholder implementation)"""
+        # EMAIL SENDING DISABLED - 2026-02-10
+        self.logger.info(f"[EMAIL DISABLED] Would have sent: {subject}")
+        return
+
         try:
             # TODO: Implement actual email sending
             self.logger.info(f"EMAIL ALERT - {subject}")

@@ -50,28 +50,45 @@ def get_gateway_health():
         return "⚠ Error", str(e)
 
 def get_services_status():
-    """Get status of all trading services"""
+    """Get status of all trading services (checks both systemd and direct processes)"""
     services_status = {}
 
-    # System services (require sudo)
-    system_services = ["ibgateway.service"]
-    for svc in system_services:
-        try:
+    # Check IB Gateway - prefer process detection over systemd
+    try:
+        result = subprocess.run(
+            ["pgrep", "-f", "IbcGateway|ibgateway"],
+            capture_output=True, text=True, timeout=3
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            pid = result.stdout.strip().split('\n')[0]
+            services_status["ibgateway"] = f"active (pid {pid})"
+        else:
+            # Fallback to systemd check
             result = subprocess.run(
-                ["systemctl", "is-active", svc],
-                capture_output=True,
-                text=True,
-                timeout=3
+                ["systemctl", "is-active", "ibgateway.service"],
+                capture_output=True, text=True, timeout=3
             )
-            services_status[svc] = result.stdout.strip()
-        except:
-            services_status[svc] = "unknown"
+            services_status["ibgateway"] = result.stdout.strip()
+    except:
+        services_status["ibgateway"] = "unknown"
 
-    # User services
+    # Check Quantum Trading Bot - prefer process detection
+    try:
+        result = subprocess.run(
+            ["pgrep", "-f", "quantum_trading_bot"],
+            capture_output=True, text=True, timeout=3
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            pid = result.stdout.strip().split('\n')[0]
+            services_status["quantum-bot"] = f"active (pid {pid})"
+        else:
+            services_status["quantum-bot"] = "inactive"
+    except:
+        services_status["quantum-bot"] = "unknown"
+
+    # Check other user services
     user_services = [
         "trading-bot.service",
-        "trading-bot-quantum.service",
-        "trading-bot-mvp.service",
         "trading-watchdog.service"
     ]
 
@@ -79,9 +96,7 @@ def get_services_status():
         try:
             result = subprocess.run(
                 ["systemctl", "--user", "is-active", svc],
-                capture_output=True,
-                text=True,
-                timeout=3
+                capture_output=True, text=True, timeout=3
             )
             services_status[svc] = result.stdout.strip()
         except:
@@ -90,8 +105,30 @@ def get_services_status():
     return services_status
 
 def get_active_bot_service():
-    """Get active bot service details"""
+    """Get active bot service details (checks direct processes first, then systemd)"""
     try:
+        # First check for direct quantum bot process
+        result = subprocess.run(
+            ["pgrep", "-af", "quantum_trading_bot"],
+            capture_output=True, text=True, timeout=3
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            line = result.stdout.strip().split('\n')[0]
+            pid = line.split()[0]
+            # Get process start time for uptime
+            uptime_str = ""
+            try:
+                stat_result = subprocess.run(
+                    ["ps", "-o", "etime=", "-p", pid],
+                    capture_output=True, text=True, timeout=3
+                )
+                if stat_result.returncode == 0:
+                    uptime_str = stat_result.stdout.strip()
+            except:
+                pass
+            return "quantum-bot (process)", "active (running)", pid, uptime_str
+
+        # Fallback: check systemd services
         services = [
             "trading-bot-quantum.service",
             "trading-bot.service",
@@ -102,14 +139,17 @@ def get_active_bot_service():
         for svc in services:
             result = subprocess.run(
                 ["systemctl", "--user", "is-active", svc],
-                capture_output=True,
-                text=True
+                capture_output=True, text=True
             )
             if result.stdout.strip() == "active":
                 active_service = svc
                 break
 
         if not active_service:
+            # Check day of week - if weekend, note it
+            now = datetime.now()
+            if now.weekday() >= 5:
+                return "INACTIVE", "Weekend - markets closed", "", ""
             return "INACTIVE", "No active service", "", ""
 
         # Get service details
@@ -117,8 +157,7 @@ def get_active_bot_service():
             ["systemctl", "--user", "show", active_service,
              "--property=MainPID", "--property=ActiveState",
              "--property=SubState", "--property=ActiveEnterTimestamp"],
-            capture_output=True,
-            text=True
+            capture_output=True, text=True
         )
 
         pid = ""
@@ -417,17 +456,27 @@ def generate_report():
     lines.append("-" * 40)
     gateway_status, gateway_hint = get_gateway_health()
 
-    # Also check port 4002
+    # Also check port 4002 (use ss to check if port is listening - nc fails with IB binary protocol)
     port_4002_open = False
     try:
         result = subprocess.run(
-            ["timeout", "1", "bash", "-c", "echo '' | nc 127.0.0.1 4002"],
+            ["ss", "-tlnH", "sport", "=", "4002"],
             capture_output=True,
-            text=True
+            text=True,
+            timeout=3
         )
-        port_4002_open = (result.returncode == 0)
+        port_4002_open = bool(result.stdout.strip())
     except:
-        pass
+        # Fallback: try socket connect
+        try:
+            import socket
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.settimeout(2)
+            s.connect(("127.0.0.1", 4002))
+            s.close()
+            port_4002_open = True
+        except:
+            pass
 
     lines.append(f"  Validator: {gateway_status}")
     lines.append(f"  Port 4002: {'✓ OPEN' if port_4002_open else '✗ CLOSED'}")

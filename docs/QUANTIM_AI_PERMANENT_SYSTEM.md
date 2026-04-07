@@ -54,7 +54,7 @@ DISPLAY=:1 /home/davidsanker/IBGateway/ibgateway.bin > /tmp/gateway_clean_$(date
 
 ### Solution (Manual VNC Required):
 1. **Connect to VNC**: `vnc://localhost:5901`
-2. **Login**: amakua444 / Twbb19874!
+2. **Login**: amakua444 / YOUR_IB_PASSWORD
 3. **Configuration → API**:
    - ✅ Enable ActiveX and Socket Clients = YES
    - ✅ Socket port = 4002
@@ -152,7 +152,7 @@ tail -20 /home/davidsanker/investor_bot_migration_20251017_163810/investor/tradi
 
 ### IB Account:
 - **Username**: amakua444
-- **Password**: Twbb19874!
+- **Password**: YOUR_IB_PASSWORD
 - **Account**: DUE565783
 - **Mode**: Paper Trading
 - **API Port**: 4002

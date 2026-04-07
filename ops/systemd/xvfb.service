@@ -1,0 +1,17 @@
+[Unit]
+Description=X Virtual Frame Buffer (Xvfb) for IB Gateway
+Documentation=man:Xvfb(1)
+Before=ib-gateway.service
+
+[Service]
+Type=simple
+User=davidsanker
+Environment=DISPLAY=:1
+ExecStart=/usr/bin/Xvfb :1 -screen 0 1024x768x24 -ac
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

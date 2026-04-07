@@ -1,0 +1,44 @@
+# Whitelist Profile: Phase 0 - US Stocks/ETFs Only
+# Safe initial rollout for Monday 2026-01-26
+# Conservative parameters, well-known liquid instruments
+
+profile_name: "phase0_stocks_us"
+phase: 0
+description: "Safe initial rollout - US stocks and ETFs only"
+
+# Asset classes allowed
+asset_classes:
+  - STOCK
+  - ETF
+
+# Symbols whitelist (liquid, well-known US instruments)
+# Using major indices and tech giants for safety
+symbols:
+  - SPY      # S&P 500 ETF
+  - QQQ      # Nasdaq-100 ETF
+  - IWM      # Russell 2000 ETF
+  - DIA      # Dow Jones ETF
+  - AAPL     # Apple Inc.
+  - MSFT     # Microsoft Corp.
+  - GOOGL    # Alphabet Inc. Class A
+  - AMZN     # Amazon.com Inc.
+  - TSLA     # Tesla Inc.
+  - NVDA     # NVIDIA Corp.
+
+# Order limits
+max_orders_per_day: 20
+max_position_usd_per_symbol: 50000
+max_order_notional_usd: 25000
+
+# Risk limits (profile-specific, more conservative than global)
+max_gross_exposure_usd: 150000
+max_net_exposure_usd: 100000
+
+# Notes
+notes: "Phase 0 - Safe rollout with liquid US stocks/ETFs only. No options, no futures."
+readiness_date: "2026-01-24"
+target_live_date: "2026-01-26"
+
+# Validation
+validated: true
+risk_level: "conservative"

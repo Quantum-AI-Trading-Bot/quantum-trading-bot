@@ -1,10 +1,9 @@
 # ============================================================================
 # Quantum AI Trading Bot - Git Ignore Configuration
 # ============================================================================
-# This ensures NO secrets, runtime data, or large files are ever committed
 
 # ============================================================================
-# SECRETS - NEVER COMMIT THESE
+# SECRETS - NEVER COMMIT
 # ============================================================================
 .env
 .env.local
@@ -22,34 +21,37 @@ ibc-config.ini
 # ============================================================================
 # RUNTIME STATE & DATA
 # ============================================================================
-# Ledgers and trading records
-state/ledgers/*.jsonl
-state/ledgers/*.json
-vpa_storage/*.json
-vpa_storage/*.jsonl
-execution_receipts/*
-execution_receipts/*.json
+state/
+vpa_storage/
+execution_receipts/
+reconcile_receipts/
 
-# Logs (keep directory structure via .gitkeep)
-logs/**/*.log
-logs/**/*.txt
-logs/**/*.json
-logs/**/*
-!logs/.gitkeep
+# Logs
+logs/
+*.log
+*.log.*
 
-# Data directories (keep structure, ignore content)
-data/**/*
-ml/**/*
-optimization/**/*
-rl/**/*
-settlement/**/*
-tools/**/*
-!data/.gitkeep
-!ml/.gitkeep
-!optimization/.gitkeep
-!rl/.gitkeep
-!settlement/.gitkeep
-!tools/.gitkeep
+# ============================================================================
+# DATA & MODEL ARTIFACTS (can be regenerated)
+# ============================================================================
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.csv
+*.db
+*.sqlite
+data_catalog_*.json
+reports/*.html
+
+# Research caches
+research/phase1/data/cache/
+research/phase1/phase1/results/
 
 # ============================================================================
 # PYTHON ARTIFACTS
@@ -135,38 +137,17 @@ IB_GATEWAY_MANUAL_LOGIN_REQUIRED
 *.pid
 *.lock
 
-# Archives (may contain sensitive data)
+# Archives
 archives/secrets_*/
 archives/**/*.tar.gz
 archives/**/*.zip
 archives/**/*.tgz
 
-# ============================================================================
-# MODEL ARTIFACTS (can be regenerated)
-# ============================================================================
-*.pkl
-*.pickle
-*.h5
-*.hdf5
-*.pt
-*.pth
-*.ckpt
-*.safetensors
-models/**/*_artifacts/
-models/**/checkpoints/
-models/**/saved_models/
-
-# ============================================================================
-# JUPYTER NOTEBOOKS
-# ============================================================================
+# Jupyter
 .ipynb_checkpoints/
 *.ipynb
 
-# ============================================================================
-# MISCELLANEOUS
-#===========
-*.log
-*.log.*
+# Misc
 session.*
 *.session
 .node_repl_history

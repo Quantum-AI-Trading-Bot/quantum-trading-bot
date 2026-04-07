@@ -47,7 +47,7 @@ DISPLAY=:1 /home/davidsanker/IBGateway/ibgateway.bin > /tmp/gateway_clean_$(date
 
 ### Step 3: Manual API Configuration (REQUIRED)
 1. **Connect to VNC**: `vnc://localhost:5901`
-2. **Login** with credentials (amakua444 / Twbb19874!)
+2. **Login** with credentials (amakua444 / YOUR_IB_PASSWORD)
 3. **Go to Configuration → API**
 4. **Verify settings**:
    - ✅ Enable ActiveX and Socket Clients = YES

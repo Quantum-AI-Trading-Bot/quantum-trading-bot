@@ -169,7 +169,7 @@ except Exception as e:
 
 🖥️  VNC ACCESS STEPS:
 1. Connect to VNC: vnc://localhost:5901
-2. Username: amakua444, Password: Twbb19874!
+2. Username: amakua444, Password: YOUR_IB_PASSWORD
 
 ⚙️  IB GATEWAY CONFIGURATION:
 1. If you see a warning dialog → Click "OK" or "Dismiss"

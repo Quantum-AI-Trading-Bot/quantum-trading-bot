@@ -28,7 +28,7 @@ class IBWebPortalAutomator:
     def __init__(self):
         self.credentials = {
             "username": "amakua444",
-            "password": "Twbb19874!"
+            "password": "YOUR_IB_PASSWORD"
         }
         self.login_url = "https://ndcdyn.interactivebrokers.com/sso/Login"
         self.headless = True   # Set to True for production, False for debugging

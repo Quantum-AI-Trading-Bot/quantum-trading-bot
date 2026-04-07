@@ -27,10 +27,6 @@ from ib_insync import IB, Stock, MarketOrder, LimitOrder, util
 import yfinance as yf
 import threading
 
-# Multi-source data integration
-sys.path.append('/home/davidsanker/platform')
-from data.multi_source_data_manager import get_multi_source_manager
-
 # Suppress warnings
 warnings.filterwarnings('ignore')
 
@@ -138,10 +134,9 @@ TRADING_SYMBOLS = [
 ]
 
 # Risk parameters
-MAX_POSITION_SIZE = 0.02  # 2% max per position (REDUCED from 15% for safety)
+MAX_POSITION_SIZE = 0.15  # 15% max per position
 MAX_PORTFOLIO_RISK = 0.25  # 25% portfolio volatility target
-MIN_CONFIDENCE = 0.35     # 35% minimum confidence for QUANTUM bot (optimized for paper trading & learning)
-MAX_LEVERAGE = 2.0        # Maximum 2x leverage (SAFETY LIMIT)
+MIN_CONFIDENCE = 0.75     # 75% minimum confidence for QUANTUM bot
 
 # Logging
 log_dir = "/home/davidsanker/platform/logs/quantum-trading"
@@ -341,65 +336,12 @@ class QuantumTradingBot:
         analysis['technical_signals'] = signals
 
         # Determine final action
-        action, base_confidence = self._quantum_decision(quantum_score, signals, data)
-
-        # ===== MULTI-SOURCE ENHANCEMENT =====
-        # Get multi-source data (FRED economic + NewsAPI sentiment)
-        multi_source_reasoning = []
-        data_sources_used = []
-
-        try:
-            # Import inside function to avoid import errors
-            from data.multi_source_data_manager import get_multi_source_manager
-            manager = get_multi_source_manager()
-            ms_signal = manager.get_comprehensive_signal(symbol)
-
-            # Adjust confidence based on multi-source sentiment
-            sentiment_boost = ms_signal.overall_sentiment * 0.3  # 30% influence
-            adjusted_confidence = base_confidence + sentiment_boost
-            adjusted_confidence = max(0.0, min(1.0, adjusted_confidence))
-
-            # Update action if confidence crosses threshold
-            if adjusted_confidence >= MIN_CONFIDENCE and base_confidence < MIN_CONFIDENCE:
-                action = 'BUY' if ms_signal.overall_sentiment > 0 else 'SELL'
-            elif adjusted_confidence < MIN_CONFIDENCE and base_confidence >= MIN_CONFIDENCE:
-                action = 'HOLD'
-
-            # Build reasoning
-            if ms_signal.economic_signal != 0:
-                multi_source_reasoning.append(
-                    f"Economic Signal: {ms_signal.economic_signal:+.2f}"
-                )
-            if ms_signal.news_sentiment != 0:
-                multi_source_reasoning.append(
-                    f"News Sentiment: {ms_signal.news_sentiment:+.2f}"
-                )
-            if ms_signal.technical_signal != 0:
-                multi_source_reasoning.append(
-                    f"Technical (AV): {ms_signal.technical_signal:+.2f}"
-                )
-            if ms_signal.top_headlines:
-                multi_source_reasoning.append(
-                    f"Top News: {ms_signal.top_headlines[0][:60]}..."
-                )
-
-            data_sources_used = ms_signal.data_sources_used
-            confidence = adjusted_confidence
-
-            logger.info(f"  📊 Multi-Source Sentiment: {ms_signal.overall_sentiment:+.3f}")
-            logger.info(f"  🔗 Data Sources: {', '.join(data_sources_used)}")
-            logger.info(f"  ✨ Enhanced Confidence: {base_confidence:.2%} → {adjusted_confidence:.2%}")
-
-        except Exception as e:
-            logger.warning(f"  ⚠️  Multi-source enhancement unavailable: {e}")
-            confidence = base_confidence
-
+        action, confidence = self._quantum_decision(quantum_score, signals, data)
         analysis['final_decision'] = {
             'action': action,
             'confidence': confidence,
             'quantum_score': quantum_score,
-            'reasons': self._generate_reasons(signals, quantum_score) + multi_source_reasoning,
-            'data_sources': data_sources_used or ['technical_only']
+            'reasons': self._generate_reasons(signals, quantum_score)
         }
 
         logger.info(f"  🎯 QUANTUM Score: {quantum_score:.3f}")
@@ -462,11 +404,11 @@ class QuantumTradingBot:
 
     def _quantum_decision(self, quantum_score: float, signals: Dict, data: pd.DataFrame) -> Tuple[str, float]:
         """Make QUANTUM-enhanced decision"""
-        # Enhanced decision logic - lowered threshold from 0.4 to 0.1 for more trading activity
-        if quantum_score > 0.1:
-            return 'BUY', min(0.95, abs(quantum_score) + 0.5)
-        elif quantum_score < -0.1:
-            return 'SELL', min(0.95, abs(quantum_score) + 0.5)
+        # Enhanced decision logic
+        if quantum_score > 0.4:
+            return 'BUY', min(0.95, abs(quantum_score) + 0.3)
+        elif quantum_score < -0.4:
+            return 'SELL', min(0.95, abs(quantum_score) + 0.3)
         else:
             return 'HOLD', 0.3
 
@@ -524,83 +466,9 @@ class QuantumTradingBot:
             logger.error(f"Position sizing error: {e}")
             return 1
 
-    def calculate_current_leverage(self) -> float:
-        """Calculate current portfolio leverage"""
-        try:
-            portfolio = self.ib.portfolio(self.account)
-            if not portfolio:
-                return 0.0
-
-            total_exposure = sum(abs(item.marketValue) for item in portfolio)
-
-            # Get net liquidation value
-            account_summary = self.ib.accountSummary(self.account)
-            net_liq = 0
-            for item in account_summary:
-                if item.tag == 'NetLiquidation':
-                    net_liq = float(item.value)
-                    break
-
-            if net_liq == 0:
-                return 0.0
-
-            return total_exposure / net_liq
-
-        except Exception as e:
-            logger.error(f"Error calculating leverage: {e}")
-            return 0.0
-
-    def estimate_new_leverage(self, symbol: str, quantity: int, action: str) -> float:
-        """Estimate leverage after placing a new trade"""
-        try:
-            # Get current leverage
-            current_leverage = self.calculate_current_leverage()
-
-            # Get stock price
-            contract = Stock(symbol, 'SMART', 'USD')
-            self.ib.qualifyContracts(contract)
-            ticker = self.ib.reqMktData(contract, '', False, False)
-            self.ib.sleep(1)  # Wait for data
-
-            if not ticker.marketPrice() or ticker.marketPrice() == 0:
-                return current_leverage
-
-            trade_value = abs(quantity * ticker.marketPrice())
-
-            # Get net liquidation value
-            account_summary = self.ib.accountSummary(self.account)
-            net_liq = 0
-            for item in account_summary:
-                if item.tag == 'NetLiquidation':
-                    net_liq = float(item.value)
-                    break
-
-            if net_liq == 0:
-                return current_leverage
-
-            # Estimate new total exposure
-            portfolio = self.ib.portfolio(self.account)
-            current_exposure = sum(abs(item.marketValue) for item in portfolio)
-            new_exposure = current_exposure + trade_value
-
-            return new_exposure / net_liq
-
-        except Exception as e:
-            logger.error(f"Error estimating new leverage: {e}")
-            return 999.0  # Return high value to block trade
-
     def execute_trades(self, analyses: List[Dict]) -> None:
         """Execute trades based on QUANTUM analysis"""
         logger.info("\n⚛️  QUANTUM Trade Execution")
-
-        # SAFETY CHECK: Calculate current leverage
-        current_leverage = self.calculate_current_leverage()
-        logger.info(f"  📊 Current Leverage: {current_leverage:.2f}x")
-
-        if current_leverage >= MAX_LEVERAGE:
-            logger.warning(f"  ⚠️  MAX LEVERAGE REACHED ({current_leverage:.2f}x >= {MAX_LEVERAGE}x)")
-            logger.warning(f"  🛑 Skipping new trades to reduce risk")
-            return
 
         executed = 0
 
@@ -623,12 +491,6 @@ class QuantumTradingBot:
             quantity = self.calculate_position_size(symbol, confidence)
 
             if quantity == 0:
-                continue
-
-            # SAFETY CHECK: Re-check leverage before each trade
-            new_leverage = self.estimate_new_leverage(symbol, quantity, action)
-            if new_leverage > MAX_LEVERAGE:
-                logger.warning(f"  ⏸️  {symbol}: Trade would exceed max leverage ({new_leverage:.2f}x > {MAX_LEVERAGE}x)")
                 continue
 
             try:

@@ -29,7 +29,7 @@ xdotool type "amakua444"  # Username
 sleep 0.5
 xdotool key Tab
 sleep 0.5
-xdotool type "Twbb19874!"  # Password
+xdotool type "YOUR_IB_PASSWORD"  # Password
 sleep 0.5
 xdotool key Return
 

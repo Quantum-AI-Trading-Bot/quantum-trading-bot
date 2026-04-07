@@ -1,0 +1,52 @@
+# Whitelist Profile: Phase 1 - Add Options with Defined Risk
+# Adds options trading with strict risk controls
+
+profile_name: "phase1_add_options_defined_risk"
+phase: 1
+description: "Phase 0 + Long options only (no short premium selling)"
+
+# Asset classes allowed
+asset_classes:
+  - STOCK
+  - ETF
+  - OPTION
+
+# Symbols whitelist (Phase 0 symbols + optionable underlyings)
+symbols:
+  # Phase 0 symbols
+  - SPY
+  - QQQ
+  - IWM
+  - AAPL
+  - MSFT
+  - GOOGL
+  - AMZN
+  - TSLA
+  - NVDA
+
+# Order limits
+max_orders_per_day: 30
+max_position_usd_per_symbol: 50000
+max_order_notional_usd: 25000
+
+# Risk limits
+max_gross_exposure_usd: 200000
+max_net_exposure_usd: 150000
+
+# Options-specific constraints
+options:
+  allow_short_premium: false      # No selling naked options
+  allow_spreads: false             # No complex spreads initially
+  max_premium_usd_per_day: 2000   # Max total premium spent per day
+  max_contracts_per_order: 2      # Conservative size
+  long_only: true                  # Only long options (calls/puts for downside protection)
+
+# Notes
+notes: "Phase 1 - Adds long options only. No short premium, no spreads. Defined risk."
+readiness_date: "2026-01-24"
+target_live_date: "TBD"
+
+# Validation
+validated: true
+risk_level: "moderate"
+requires_option_margin: true

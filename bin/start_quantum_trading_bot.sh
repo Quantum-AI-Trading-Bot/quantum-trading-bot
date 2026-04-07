@@ -8,8 +8,8 @@ set -euo pipefail
 
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-QUANTUM_BOT_DIR="/home/davidsanker/investor_bot_migration_20251017_163810/investor"
-QUANTUM_BOT_SCRIPT="quantum_enhanced_trading_bot.py"
+QUANTUM_BOT_DIR="/home/davidsanker"
+QUANTUM_BOT_SCRIPT="platform/bin/quantum_trading_bot.py"
 LOG_FILE="/home/davidsanker/platform/logs/quantum-trading-bot.log"
 PID_FILE="/tmp/quantum_trading_bot.pid"
 
@@ -70,6 +70,18 @@ setup_quantum_environment() {
     # Ensure we're in the correct directory
     cd "$QUANTUM_BOT_DIR"
 
+    # Load runtime configuration (CRITICAL: exports DRY_RUN, PAPER_MODE, etc.)
+    RUNTIME_ENV="/home/davidsanker/platform/config/quantum_runtime.env"
+    if [ -f "$RUNTIME_ENV" ]; then
+        set -a  # Export all variables
+        source "$RUNTIME_ENV"
+        set +a
+        log "✅ Runtime config loaded: DRY_RUN=$QUANTUM_EXECUTION_DRY_RUN, PAPER=$PAPER_EXECUTION_MODE"
+    else
+        error "Runtime configuration missing: $RUNTIME_ENV"
+        exit 1
+    fi
+
     # Activate virtual environment
     if [ -f "/home/davidsanker/venv/bin/activate" ]; then
         source /home/davidsanker/venv/bin/activate
@@ -112,7 +124,7 @@ import logging
 from pathlib import Path
 
 # Add current directory to path
-sys.path.insert(0, '/home/davidsanker/investor_bot_migration_20251017_163810/investor')
+sys.path.insert(0, '/home/davidsanker/platform/bin')
 
 # Setup logging
 logging.basicConfig(
@@ -236,10 +248,14 @@ while true; do
         /home/davidsanker/platform/bin/start_quantum_trading_bot.sh &
     fi
 
-    # Stop any other trading bots
-    if pgrep -f "trading_bot.py" >/dev/null; then
+    # Stop any non-quantum trading bots
+    if pgrep -f "trading_bot.py" | grep -v -E "quantum.*trading_bot\.py" >/dev/null; then
         echo "[$(date '+%Y-%m-%d %H:%M:%S')] Stopping competing basic trading bot" >> "$LOG_FILE"
-        pkill -f "trading_bot.py" || true
+        pgrep -f "trading_bot.py" | while read pid; do
+            if ! ps -p "$pid" -o args= | grep -qE "quantum.*trading_bot\.py"; then
+                kill "$pid" 2>/dev/null || true
+            fi
+        done
     fi
 
     sleep $MONITOR_INTERVAL
@@ -321,8 +337,9 @@ main() {
                 error "❌ QUANTUM Trading Bot is NOT running"
             fi
 
-            # Check for competing bots
-            if pgrep -f "trading_bot.py" >/dev/null; then
+            # Check for competing bots (exclude all quantum bot variants and this script)
+            COMPETING_BOTS=$(pgrep -a -f "trading_bot\.py" | grep -v -E "quantum.*trading_bot\.py" | grep -v "pgrep" | grep -v "start_quantum_trading_bot" || true)
+            if [ -n "$COMPETING_BOTS" ]; then
                 warn "⚠️  Basic trading bot detected - QUANTUM exclusivity compromised"
             else
                 log "✅ No competing trading bots found - QUANTUM running exclusively"

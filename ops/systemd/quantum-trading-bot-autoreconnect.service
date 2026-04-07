@@ -1,0 +1,49 @@
+[Unit]
+Description=Quantum Trading Bot with Auto-Reconnect
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=davidsanker
+Group=davidsanker
+WorkingDirectory=/home/davidsanker/platform
+
+# Environment
+Environment="PATH=/home/davidsanker/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONPATH=/home/davidsanker/platform:/home/davidsanker/quantum-trading-bot-new"
+Environment="DISPLAY=:1"
+
+# Command to run
+ExecStart=/home/davidsanker/venv/bin/python3 /home/davidsanker/platform/bin/quantum_bot_with_autoreconnect.py
+
+# Restart policy - always restart on failure
+Restart=always
+RestartSec=30
+
+# If the process exits with these codes, restart immediately
+RestartForceExitStatus=1 2 8 SIGTERM SIGKILL
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Logging
+StandardOutput=append:/home/davidsanker/platform/logs/quantum-bot-service.log
+StandardError=append:/home/davidsanker/platform/logs/quantum-bot-service-error.log
+SyslogIdentifier=quantum-trading-bot
+
+# Watchdog - systemd will restart if no keepalive for 5 minutes
+WatchdogSec=300
+
+# Security (optional, can be tightened)
+PrivateTmp=false
+NoNewPrivileges=false
+
+# Kill settings
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

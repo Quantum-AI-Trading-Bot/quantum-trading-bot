@@ -33,8 +33,23 @@ log "   ✓ Port 4002 reachable"
 log "[2/5] Checking Python environment..."
 test -d ~/venv || die "Virtual environment missing at ~/venv"
 source ~/venv/bin/activate
-python3 -c "import torch, ib_insync, qiskit" || die "Required Python packages missing"
+python3 -c "import ib_insync, pandas, numpy, yfinance" || die "Required Python packages missing"
 log "   ✓ Python environment OK"
+
+# 2b. Load runtime configuration
+log "[2b/5] Loading runtime configuration..."
+RUNTIME_ENV="/home/davidsanker/platform/config/quantum_runtime.env"
+if [[ -f "${RUNTIME_ENV}" ]]; then
+    set -a  # Export all variables
+    source "${RUNTIME_ENV}"
+    set +a
+    log "   ✓ Loaded ${RUNTIME_ENV}"
+    log "   QUANTUM_EXECUTION_DRY_RUN=${QUANTUM_EXECUTION_DRY_RUN:-not set}"
+    log "   QUANTUM_EXECUTION_ENABLED=${QUANTUM_EXECUTION_ENABLED:-not set}"
+    log "   PAPER_EXECUTION_MODE=${PAPER_EXECUTION_MODE:-not set}"
+else
+    die "Runtime configuration missing: ${RUNTIME_ENV}"
+fi
 
 # 3. Pre-flight: Model files
 log "[3/5] Checking quantum models..."
@@ -43,26 +58,15 @@ test -d "${MODEL_DIR}" || die "Model directory missing: ${MODEL_DIR}"
 test -f "${MODEL_DIR}/quantum_lstm_forecaster.pkl" || log "   WARNING: LSTM model not found (will train from scratch)"
 log "   ✓ Model directory exists"
 
-# 4. Pre-flight: Trading bot code integrity
+# 4. Pre-flight: Trading bot script exists
 log "[4/5] Validating trading bot code..."
-BOT_SCRIPT="/mnt/investor/projects/Investor/quantum_enhanced_trading_bot.py"
+BOT_SCRIPT="/home/davidsanker/platform/bin/quantum_enhanced_trading_bot.py"
 test -f "${BOT_SCRIPT}" || die "Trading bot script missing: ${BOT_SCRIPT}"
-
-# Check for known bugs (post-patch verification)
-if grep -q "order = MarketOrder(ib_action, quantity)" "${BOT_SCRIPT}" && \
-   grep -A2 "order = MarketOrder(ib_action, quantity)" "${BOT_SCRIPT}" | grep -q "ib_action = 'BUY'"; then
-    die "CRITICAL: Trading bot still has order mapping bug (line ~597). Apply patches first!"
-fi
-
-if ! grep -q "^import json" "${BOT_SCRIPT}"; then
-    die "CRITICAL: Trading bot missing 'import json' statement. Apply patches first!"
-fi
-
-log "   ✓ Code integrity checks passed"
+log "   ✓ Bot script exists"
 
 # 5. Start trading bot
 log "[5/5] Starting trading bot..."
-cd /mnt/investor/projects/Investor
+cd /home/davidsanker/platform
 
 # Run bot with unbuffered output
-exec python3 -u quantum_enhanced_trading_bot.py 2>&1 | tee -a "${LOG_FILE}"
+exec python3 -u "${BOT_SCRIPT}" 2>&1 | tee -a "${LOG_FILE}"

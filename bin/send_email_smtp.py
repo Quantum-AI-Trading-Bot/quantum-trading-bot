@@ -9,14 +9,13 @@ import os
 import sys
 import smtplib
 from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
 # SMTP Configuration (1&1)
 SMTP_HOST = "smtp.1und1.de"
 SMTP_PORT = 587
 SMTP_USER = "david@sanker.at"
-SMTP_PASSWORD = "cik211ii51und1"
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
 SMTP_FROM = "david@sanker.at"
 SMTP_USE_TLS = True
 
@@ -33,19 +32,29 @@ def send_email(subject, body, to_email, from_email=None):
     Returns:
         True if successful, False otherwise
     """
+    # EMAIL SENDING DISABLED - 2026-02-10
+    print(f"[EMAIL DISABLED] Would have sent to {to_email}: {subject}")
+    return True, ""
+
     if from_email is None:
         from_email = SMTP_FROM
 
     try:
-        # Create message
-        msg = MIMEMultipart()
+        # Replace Unicode symbols with ASCII equivalents to avoid base64
+        # encoding, which triggers IONOS 554 spam rejection from cloud IPs
+        ascii_body = body.replace('\u2713', '[OK]').replace('\u2717', '[X]')
+        ascii_body = ascii_body.replace('\u2714', '[OK]').replace('\u2718', '[X]')
+        ascii_body = ascii_body.replace('\u26a0', '[!]').replace('\u274c', '[X]')
+        ascii_body = ascii_body.replace('\u2192', '->').replace('\u2190', '<-')
+        ascii_body = ascii_body.replace('\u26d4', '[STOP]').replace('\U0001f6d1', '[STOP]')
+        # Encode as ASCII, replacing any remaining non-ASCII chars
+        ascii_body = ascii_body.encode('ascii', 'replace').decode('ascii')
+
+        msg = MIMEText(ascii_body, 'plain')
         msg['From'] = from_email
         msg['To'] = to_email
         msg['Subject'] = subject
         msg['Date'] = datetime.now().strftime('%a, %d %b %Y %H:%M:%S %z')
-
-        # Attach body
-        msg.attach(MIMEText(body, 'plain'))
 
         # Connect to SMTP server with verbose logging
         print(f"Connecting to {SMTP_HOST}:{SMTP_PORT}...")

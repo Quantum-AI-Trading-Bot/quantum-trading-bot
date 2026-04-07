@@ -378,10 +378,31 @@ main() {
     log "=========================================="
 
     # Initial safety checks
-    check_kill_switch || exit 1
-    check_gateway || exit 1
-    check_config_safety || exit 1
-    refresh_paper_proof || exit 1
+    # Note: These use exit 0 for expected conditions (kill switch, gateway down, market closed)
+    # Only exit 1 for unexpected internal errors
+    if ! check_kill_switch; then
+        log "Expected condition: Kill switch active"
+        write_summary
+        exit 0
+    fi
+
+    if ! check_gateway; then
+        log "Expected condition: Gateway not ready"
+        write_summary
+        exit 0
+    fi
+
+    if ! check_config_safety; then
+        error "CRITICAL: Configuration safety check failed - THIS IS A BUG"
+        write_summary
+        exit 1  # Real error - bad configuration
+    fi
+
+    if ! refresh_paper_proof; then
+        log "Expected condition: Paper proof not available"
+        write_summary
+        exit 0
+    fi
 
     # Check if market hours
     if ! is_market_hours; then
@@ -395,10 +416,11 @@ main() {
     # Main trading loop
     while true; do
         # Check kill switch
-        check_kill_switch || {
+        if ! check_kill_switch; then
+            log "Kill switch activated - stopping gracefully"
             write_summary
-            exit 1
-        }
+            exit 0
+        fi
 
         # Check market hours (stop if market closes)
         if ! is_market_hours; then

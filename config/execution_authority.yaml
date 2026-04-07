@@ -1,0 +1,34 @@
+# Execution Authority Configuration
+# Defines when autonomous trading is permitted
+# FAIL-CLOSED: If invalid, no trades execute
+
+mode: autonomous  # autonomous | manual | disabled
+
+# Time window configuration
+timezone: Europe/Berlin
+
+windows:
+  - days: [Mon, Tue, Wed, Thu, Fri]
+    start: "09:30"  # Market open Europe/Berlin
+    end: "22:00"    # Extended hours for Europe
+    note: "Conservative window - will be further gated by market-hours per instrument"
+
+# Weekend trading
+allow_weekends: false
+
+# Hard requirements
+require_paper_proof: true
+require_market_hours_guard: true
+
+# Kill switch
+kill_switch_file: "EMERGENCY_STOP"
+# If this file exists, ALL execution is blocked immediately
+
+# Flags (overridden by environment variables)
+# EXEC_AUTH_TIME_OVERRIDE: Test-only override for current time (ISO format)
+# EXECUTION_TRANSMIT_WHEN_CLOSED: Allow transmission when market closed (default: false)
+
+# Safety notes:
+# - This is the FIRST check before any order
+# - All blocks must produce receipts with reason codes
+# - Authority stamp must be included in all VPAs and receipts

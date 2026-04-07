@@ -42,7 +42,7 @@ class QuantumTradingReporter:
         self.smtp_server = "smtp.1und1.de"
         self.smtp_port = 587
         self.sender_email = "david@sanker.at"
-        self.sender_password = "cik211ii51und1"  # App-specific password
+        self.sender_password = os.environ.get('SMTP_PASSWORD', '')  # App-specific password
         self.recipients = ["david@sanker.at", "miriam.sanker@gmail.com"]
 
         logger.info("📊 Quantum Trading Reporter initialized")
@@ -395,6 +395,10 @@ class QuantumTradingReporter:
 
     def send_email_report(self, html_content: str) -> bool:
         """Send email report"""
+        # EMAIL SENDING DISABLED - 2026-02-10
+        logger.info("[EMAIL DISABLED] Would have sent daily report to %s", ", ".join(self.recipients))
+        return True
+
         try:
             # Create message
             message = MIMEMultipart("alternative")
